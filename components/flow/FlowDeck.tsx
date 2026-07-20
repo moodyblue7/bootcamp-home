@@ -28,6 +28,13 @@ export default function FlowDeck() {
   const rowRefs = useRef<(HTMLElement | null)[]>([]); // <section> = HTMLElement
   const [activeRow, setActiveRow] = useState(0);
   const [activeCols, setActiveCols] = useState<number[]>(() => flowRows.map(() => 0));
+  // 터치 기기(모바일) 감지. 서브화면 세로 잠금은 데스크톱(마우스 휠)에서만 적용하고,
+  // 모바일에서는 세로 스크롤이 항상 동작하게 둔다 — 중첩 스크롤과 잠금이 터치와 충돌해
+  // 스크롤이 끊기던 문제를 없앤다.
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   useEffect(() => {
     const id = window.location.hash.slice(1);
@@ -180,14 +187,17 @@ export default function FlowDeck() {
       </nav>
 
       {/* 세로 스냅 컨테이너.
-          첫 화면(col 0)에서만 세로 스크롤로 다음 대주제 이동을 허용한다.
-          오른쪽 세부(col ≥ 1)로 넘긴 상태에서는 세로를 잠가, 세부 화면 끝에서 멈추게 한다.
+          [데스크톱] 첫 화면(col 0)에서만 세로 스크롤로 다음 대주제 이동을 허용하고,
+          오른쪽 세부(col ≥ 1)에서는 세로를 잠가 세부 화면 끝에서 멈추게 한다(마우스 휠 기준).
+          [모바일] 터치에서는 잠금을 풀어 세로 스크롤이 항상 되게 한다(중첩 스크롤 충돌 방지).
           (패널 내부의 긴 콘텐츠 스크롤은 각 article 의 overflow-y-auto 가 계속 처리) */}
       <div
         ref={vScrollRef}
         onScroll={onVScroll}
         className="h-full snap-y snap-mandatory overscroll-none"
-        style={{ overflowY: (activeCols[activeRow] ?? 0) > 0 ? "hidden" : "scroll" }}
+        style={{
+          overflowY: !isTouch && (activeCols[activeRow] ?? 0) > 0 ? "hidden" : "scroll",
+        }}
       >
         {flowRows.map((row, ri) => {
           const multi = row.panels.length > 1;
