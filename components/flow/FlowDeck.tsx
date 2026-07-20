@@ -134,6 +134,8 @@ export default function FlowDeck() {
           return;
         // 텍스트를 드래그해 선택 중이면 이동하지 않는다
         if (window.getSelection()?.toString()) return;
+        // 모바일(터치)은 세로 스크롤로만 이동한다 — 탭으로 가로 넘김은 데스크톱 전용
+        if (isTouch) return;
         cycleCol(activeRow);
       }}
     >
@@ -186,18 +188,18 @@ export default function FlowDeck() {
         </ul>
       </nav>
 
-      {/* 세로 스냅 컨테이너.
-          [데스크톱] 첫 화면(col 0)에서만 세로 스크롤로 다음 대주제 이동을 허용하고,
-          오른쪽 세부(col ≥ 1)에서는 세로를 잠가 세부 화면 끝에서 멈추게 한다(마우스 휠 기준).
-          [모바일] 터치에서는 잠금을 풀어 세로 스크롤이 항상 되게 한다(중첩 스크롤 충돌 방지).
-          (패널 내부의 긴 콘텐츠 스크롤은 각 article 의 overflow-y-auto 가 계속 처리) */}
+      {/* 스크롤 컨테이너.
+          [데스크톱(lg+)] 세로 스냅 2D 덱. 첫 화면(col 0)에서만 세로로 대주제 이동,
+            오른쪽 세부(col ≥ 1)에서는 세로를 잠가 세부 화면 끝에서 멈춘다(마우스 휠 기준).
+          [모바일] 스냅·잠금 없이 평범한 단일 세로 스크롤. 각 대주제·세부가 위→아래로 쌓인다.
+            (iOS 등에서 중첩 가로/세로 스크롤이 충돌해 세로가 안 먹던 문제를 근본 해결) */}
       <div
         ref={vScrollRef}
         onScroll={onVScroll}
-        className="h-full snap-y snap-mandatory overscroll-none"
-        style={{
-          overflowY: !isTouch && (activeCols[activeRow] ?? 0) > 0 ? "hidden" : "scroll",
-        }}
+        className="h-full overflow-y-auto lg:snap-y lg:snap-mandatory lg:overscroll-none"
+        style={
+          isTouch ? undefined : { overflowY: (activeCols[activeRow] ?? 0) > 0 ? "hidden" : "scroll" }
+        }
       >
         {flowRows.map((row, ri) => {
           const multi = row.panels.length > 1;
@@ -208,12 +210,12 @@ export default function FlowDeck() {
               ref={(el) => {
                 rowRefs.current[ri] = el;
               }}
-              className="relative h-full snap-start"
+              className="relative lg:h-full lg:snap-start"
             >
               <div
                 data-htrack
                 onScroll={(e) => onHScroll(ri, e.currentTarget)}
-                className="flex h-full snap-x snap-mandatory overflow-x-scroll overscroll-x-contain"
+                className="flex max-lg:flex-col lg:h-full lg:snap-x lg:snap-mandatory lg:overflow-x-scroll lg:overscroll-x-contain"
               >
                 {row.panels.map((p, pi) => (
                   <article
@@ -221,8 +223,8 @@ export default function FlowDeck() {
                     // items-[safe_center]: 콘텐츠가 화면보다 크면 위쪽부터 정렬(스크롤로 접근),
                     //   작으면 세로 중앙. 그냥 items-center 면 긴 콘텐츠의 위가 잘린다.
                     // 세부가 여러 개인 대주제에서는 커서를 손 모양으로 = 넘길 수 있다는 힌트.
-                    className={`relative flex h-full w-screen shrink-0 snap-start items-[safe_center] overflow-y-auto ${
-                      multi ? "cursor-pointer" : ""
+                    className={`relative flex w-full items-[safe_center] lg:h-full lg:w-screen lg:shrink-0 lg:snap-start lg:overflow-y-auto ${
+                      multi ? "lg:cursor-pointer" : ""
                     }`}
                   >
                     {p.variant === "hc" ? (
@@ -293,7 +295,7 @@ export default function FlowDeck() {
 
               {/* 세부 위치 인디케이터(점). 클릭 버튼은 없앴다 — 이동은 우클릭. */}
               {multi && (
-                <div className="pointer-events-none absolute bottom-8 right-6 z-20 flex items-center gap-3 lg:right-10">
+                <div className="pointer-events-none absolute bottom-8 right-6 z-20 hidden items-center gap-3 lg:right-10 lg:flex">
                   <span className="text-[0.65rem] font-medium text-navy-400">클릭으로 넘기기</span>
                   <div className="flex gap-1.5">
                     {row.panels.map((_, pi) => (
