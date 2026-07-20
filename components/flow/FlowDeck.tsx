@@ -59,16 +59,27 @@ export default function FlowDeck() {
     });
   }, []);
 
-  // 좌클릭: 현재 대주제의 다음 세부로. 끝이면 첫 세부로 순환. 세부 1개면 아무것도 안 함.
-  const cycleCol = useCallback((rowIdx: number) => {
-    const track = rowRefs.current[rowIdx]?.querySelector<HTMLDivElement>("[data-htrack]");
-    if (!track) return;
-    const total = flowRows[rowIdx].panels.length;
-    if (total <= 1) return;
-    const cur = Math.round(track.scrollLeft / track.clientWidth);
-    const next = cur >= total - 1 ? 0 : cur + 1;
-    track.scrollTo({ left: next * track.clientWidth, behavior: "smooth" });
+  // 가로 이동은 "스크롤"이 아니라 상태 + transform 으로 한다.
+  //  → 가로 스크롤 컨테이너가 없어지므로, iOS(WebKit)에서 가로가 세로 스크롤을 잡아먹던
+  //    축 충돌이 원천적으로 사라진다. 세로는 계속 네이티브 스크롤을 쓴다.
+  const setCol = useCallback((rowIdx: number, updater: (cur: number, total: number) => number) => {
+    setActiveCols((prev) => {
+      const total = flowRows[rowIdx].panels.length;
+      if (total <= 1) return prev;
+      const cur = prev[rowIdx] ?? 0;
+      const next = updater(cur, total);
+      if (next === cur) return prev;
+      const arr = [...prev];
+      arr[rowIdx] = next;
+      return arr;
+    });
   }, []);
+
+  // 좌클릭(데스크톱): 다음 세부로. 끝이면 첫 세부로 순환.
+  const cycleCol = useCallback(
+    (rowIdx: number) => setCol(rowIdx, (cur, total) => (cur >= total - 1 ? 0 : cur + 1)),
+    [setCol],
+  );
 
   // 특정 대주제(row id)로 세로 이동. 내부 메뉴·로고·랜딩의 해시 링크가 쓴다.
   const goToRow = useCallback((id: string) => {
@@ -80,21 +91,32 @@ export default function FlowDeck() {
     setActiveRow(idx);
   }, []);
 
-  const onHScroll = useCallback((rowIdx: number, track: HTMLDivElement) => {
-    const col = Math.round(track.scrollLeft / track.clientWidth);
-    setActiveCols((prev) => {
-      if (prev[rowIdx] === col) return prev;
-      const next = [...prev];
-      next[rowIdx] = col;
-      return next;
-    });
+  // 모바일: 좌우 스와이프로 세부 이동. 세로 제스처는 건드리지 않아(preventDefault 없음)
+  // 네이티브 세로 스크롤이 그대로 동작한다.
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchStart.current = { x: t.clientX, y: t.clientY };
   }, []);
+  const onTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      const s = touchStart.current;
+      touchStart.current = null;
+      if (!s) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - s.x;
+      const dy = t.clientY - s.y;
+      // 가로로 충분히(50px 이상), 그리고 세로보다 뚜렷하게 움직였을 때만 세부 이동
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      setCol(activeRow, (cur, total) =>
+        dx < 0 ? Math.min(cur + 1, total - 1) : Math.max(cur - 1, 0),
+      );
+    },
+    [activeRow, setCol],
+  );
 
   // 세로로 새 대주제에 진입하면 그 대주제는 항상 첫 화면(col 0)부터 연다.
-  // (이전에 오른쪽 세부까지 봤던 대주제도, 다시 세로로 오면 처음부터)
   useEffect(() => {
-    const track = rowRefs.current[activeRow]?.querySelector<HTMLDivElement>("[data-htrack]");
-    if (track && track.scrollLeft !== 0) track.scrollLeft = 0;
     setActiveCols((cols) =>
       cols[activeRow] === 0 ? cols : cols.map((c, i) => (i === activeRow ? 0 : c)),
     );
@@ -112,6 +134,8 @@ export default function FlowDeck() {
   return (
     <div
       className="fixed inset-0 z-[60] bg-white"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
       onClick={(e) => {
         // 해시 링크(#healthcare, #contact 등)는 flow 의 해당 대주제 화면으로 보낸다.
         // (랜딩페이지의 도입 문의·협업 문의, 회사정보의 바로가기 메뉴 모두 여기로 처리)
@@ -188,15 +212,13 @@ export default function FlowDeck() {
         </ul>
       </nav>
 
-      {/* 스크롤 컨테이너.
-          [데스크톱(lg+)] 세로 스냅 2D 덱. 첫 화면(col 0)에서만 세로로 대주제 이동,
-            오른쪽 세부(col ≥ 1)에서는 세로를 잠가 세부 화면 끝에서 멈춘다(마우스 휠 기준).
-          [모바일] 스냅·잠금 없이 평범한 단일 세로 스크롤. 각 대주제·세부가 위→아래로 쌓인다.
-            (iOS 등에서 중첩 가로/세로 스크롤이 충돌해 세로가 안 먹던 문제를 근본 해결) */}
+      {/* 세로 스냅 컨테이너 — 세로는 네이티브 스크롤(모바일·데스크톱 공통).
+          가로는 스크롤이 아니라 transform 이라 축 충돌이 없다.
+          데스크톱에서는 세부(col ≥ 1)에서 세로를 잠가 화면 끝에서 멈추게 한다(마우스 휠 기준). */}
       <div
         ref={vScrollRef}
         onScroll={onVScroll}
-        className="h-full overflow-y-auto lg:snap-y lg:snap-mandatory lg:overscroll-none"
+        className="h-full snap-y snap-mandatory overflow-y-auto overscroll-none"
         style={
           isTouch ? undefined : { overflowY: (activeCols[activeRow] ?? 0) > 0 ? "hidden" : "scroll" }
         }
@@ -210,12 +232,14 @@ export default function FlowDeck() {
               ref={(el) => {
                 rowRefs.current[ri] = el;
               }}
-              className="relative lg:h-full lg:snap-start"
+              className="relative h-full snap-start overflow-hidden"
             >
+              {/* 가로 트랙 — 스크롤 컨테이너가 아니라 transform 으로 이동한다.
+                  각 패널이 폭 100% 이므로 col 당 -100% 씩 밀면 된다. */}
               <div
                 data-htrack
-                onScroll={(e) => onHScroll(ri, e.currentTarget)}
-                className="flex max-lg:flex-col lg:h-full lg:snap-x lg:snap-mandatory lg:overflow-x-scroll lg:overscroll-x-contain"
+                className="flex h-full transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${(activeCols[ri] ?? 0) * 100}%)` }}
               >
                 {row.panels.map((p, pi) => (
                   <article
@@ -223,7 +247,7 @@ export default function FlowDeck() {
                     // items-[safe_center]: 콘텐츠가 화면보다 크면 위쪽부터 정렬(스크롤로 접근),
                     //   작으면 세로 중앙. 그냥 items-center 면 긴 콘텐츠의 위가 잘린다.
                     // 세부가 여러 개인 대주제에서는 커서를 손 모양으로 = 넘길 수 있다는 힌트.
-                    className={`relative flex w-full items-[safe_center] lg:h-full lg:w-screen lg:shrink-0 lg:snap-start lg:overflow-y-auto ${
+                    className={`relative flex h-full w-full shrink-0 items-[safe_center] overflow-y-auto ${
                       multi ? "lg:cursor-pointer" : ""
                     }`}
                   >
@@ -295,8 +319,11 @@ export default function FlowDeck() {
 
               {/* 세부 위치 인디케이터(점). 클릭 버튼은 없앴다 — 이동은 우클릭. */}
               {multi && (
-                <div className="pointer-events-none absolute bottom-8 right-6 z-20 hidden items-center gap-3 lg:right-10 lg:flex">
-                  <span className="text-[0.65rem] font-medium text-navy-400">클릭으로 넘기기</span>
+                <div className="pointer-events-none absolute bottom-8 right-6 z-20 flex items-center gap-3 lg:right-10">
+                  <span className="text-[0.65rem] font-medium text-navy-400">
+                    <span className="lg:hidden">옆으로 밀어 넘기기</span>
+                    <span className="hidden lg:inline">클릭으로 넘기기</span>
+                  </span>
                   <div className="flex gap-1.5">
                     {row.panels.map((_, pi) => (
                       <span
