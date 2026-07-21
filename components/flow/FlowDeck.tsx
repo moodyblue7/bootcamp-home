@@ -352,14 +352,16 @@ function HeroPanel() {
       {/* 상단: 헤드라인 + 설명 */}
       <div>
         <h1 className="font-display text-big font-extrabold leading-[1.2] tracking-tight sm:text-huge">
-          <span className="text-brand-blue">부트캠프는</span> 센서가 만든 데이터를,
+          <span className="text-brand-blue">부트캠프는</span> 센서 데이터를,
           <br />
           <span className="brand-gradient bg-clip-text text-transparent">
-            현장이 믿는 AI 서비스로.
+            현장이 신뢰하는 AI 서비스로 만듭니다.
           </span>
         </h1>
         <p className="mt-6 max-w-2xl text-mid text-navy-600">
-          사람의 걸음에서 근육건강 신호를, 공장의 설비에서 품질 신호를 읽습니다.
+          사람의 걸음과 생산라인의 데이터를 수집하고 품질을 검증해,
+          <br />
+          건강관리 신호와 생산 품질 신호로 바꿉니다.
         </p>
       </div>
 
@@ -375,7 +377,7 @@ function HeroPanel() {
           {/* 앞: 이미지 로드 성공 시 안내를 덮는다. 실패하면 스스로 사라진다. */}
           <img
             src="/images/hero-main.jpg"
-            alt="부트캠프 대표 이미지"
+            alt="고령자 보행 데이터와 SMT 생산라인 데이터를 AI로 연결하는 부트캠프"
             className="absolute inset-0 h-full w-full object-cover"
             onError={(e) => {
               e.currentTarget.style.display = "none";
