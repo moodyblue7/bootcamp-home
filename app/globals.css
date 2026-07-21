@@ -60,4 +60,33 @@
       theme("colors.brand.deep")
     );
   }
+
+  /* 홈 플로우 공통 레이아웃: 같은 기준선, 같은 폭, 같은 세로 리듬을 사용한다. */
+  .flow-panel {
+    @apply mx-auto w-full max-w-content px-6 py-20 md:px-10 md:py-24 lg:py-28 lg:pl-44 lg:pr-12;
+  }
+
+  .flow-label {
+    @apply text-label font-bold uppercase text-brand-blue;
+  }
+
+  .flow-hero-title {
+    @apply font-display text-display-hero font-extrabold text-navy;
+  }
+
+  .flow-section-title {
+    @apply font-display text-display-section font-extrabold text-navy;
+  }
+
+  .flow-lead {
+    @apply max-w-copy text-body-lead font-semibold text-navy;
+  }
+
+  .flow-body {
+    @apply max-w-copy text-body-base text-navy-600;
+  }
+
+  .flow-link {
+    @apply inline-flex items-center gap-2 text-body-base font-semibold text-navy transition-colors hover:text-brand-blue;
+  }
 }

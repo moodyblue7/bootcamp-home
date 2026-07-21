@@ -348,17 +348,15 @@ export default function FlowDeck() {
  *  타이포: 회사명·본문·안내 = Freesentation(font-sans), 헤드라인 = S-Core Dream(font-display). */
 function HeroPanel() {
   return (
-    <div className="mx-auto flex min-h-full w-full max-w-content flex-col justify-between px-6 py-24 lg:pl-44 lg:pr-12 lg:py-28">
+    <div className="flow-panel flex min-h-full flex-col justify-between">
       {/* 상단: 헤드라인 + 설명 */}
       <div>
-        <h1 className="font-display text-big font-extrabold leading-[1.2] tracking-tight sm:text-huge">
+        <h1 className="flow-hero-title">
           <span className="text-brand-blue">부트캠프는</span> 센서 데이터를,
           <br />
-          <span className="brand-gradient bg-clip-text text-transparent">
-            현장이 신뢰하는 AI 서비스로 만듭니다.
-          </span>
+          현장이 신뢰하는 AI 서비스로 만듭니다.
         </h1>
-        <p className="mt-6 max-w-2xl text-mid text-navy-600">
+        <p className="flow-body mt-6">
           사람의 걸음과 생산라인의 데이터를 수집하고 품질을 검증해,
           <br />
           건강관리 신호와 생산 품질 신호로 바꿉니다.
@@ -401,18 +399,27 @@ function HeroPanel() {
 function VisionPanel() {
   const [lead, ...rest] = vision.body;
   return (
-    <div className="mx-auto w-full max-w-content px-6 py-24 lg:pl-44 lg:pr-12">
-      <p className="text-small font-bold uppercase tracking-[0.2em] text-brand-blue">About</p>
-      <h2 className="mt-5 whitespace-pre-line font-display text-big font-extrabold leading-[1.3] tracking-tight sm:text-huge">
+    <div className="flow-panel">
+      <p className="flow-label">About</p>
+      <h2 className="flow-section-title mt-4 whitespace-pre-line">
         {vision.headline.join("\n")}
       </h2>
-      <div className="mt-10 max-w-3xl space-y-6">
-        <p className="text-mid font-semibold leading-relaxed text-navy">{lead}</p>
+      <div className="mt-8 max-w-copy space-y-5">
+        <p className="flow-lead">{lead}</p>
         {rest.map((p) => (
-          <p key={p.slice(0, 16)} className="text-small leading-[1.9] text-navy-600">
+          <p key={p.slice(0, 16)} className="flow-body">
             {p}
           </p>
         ))}
+        <a
+          href="#achievements"
+          className="flow-link"
+        >
+          성과와 검증 근거 보기
+          <span aria-hidden="true" className="text-brand-blue">
+            →
+          </span>
+        </a>
       </div>
     </div>
   );
@@ -423,38 +430,59 @@ function VisionPanel() {
 function TimelinePanel() {
   const years = [...timeline].reverse(); // 최근이 위로
   return (
-    <div className="mx-auto w-full max-w-content px-6 py-24 lg:pl-44 lg:pr-12">
-      <p className="text-small font-bold uppercase tracking-[0.2em] text-brand-blue">
-        About · 연혁
-      </p>
-      <h2 className="mt-5 font-display text-big font-extrabold tracking-tight sm:text-huge">
-        걸어온 길
+    <div className="flow-panel">
+      <p className="flow-label">About · 연혁</p>
+      <h2 className="flow-section-title mt-4">
+        센서 AI의 검증에서,
+        <br />
+        제조 AX의 확장까지.
       </h2>
+      <p className="flow-body mt-5">
+        2022년 설립 이후 연구·특허·공인시험·현장 실증을 축적하며, 센서 데이터를 현장에서
+        작동하는 AI 서비스로 연결해 왔습니다.
+      </p>
 
-      <ol className="mt-10 space-y-8">
-        {years.map((y) => (
-          <li key={y.year} className="lg:grid lg:grid-cols-[7rem_1fr] lg:gap-6">
-            <h3 className="brand-gradient bg-clip-text font-display text-mid font-extrabold tracking-tight text-transparent">
+      <ol className="mt-8 max-w-[56rem] space-y-4">
+        {years.map((y, yearIndex) => (
+          <li
+            key={y.year}
+            className={`rounded-2xl border px-5 py-5 sm:px-6 lg:grid lg:grid-cols-[6rem_minmax(0,1fr)] lg:gap-6 ${
+              yearIndex === 0 ? "border-brand-blue/15 bg-navy-50" : "border-navy-100 bg-white"
+            }`}
+          >
+            <h3
+              className={`font-display text-heading-card font-extrabold tracking-tight ${
+                yearIndex === 0 ? "text-brand-blue" : "text-navy"
+              }`}
+            >
               {y.year}
             </h3>
-            <ul className="mt-3 space-y-3 border-l border-navy-200 pl-5 lg:mt-1">
+            <ul className="mt-4 space-y-4 border-l border-navy-200 pl-5 lg:mt-0">
               {y.items.map((it) => (
                 <li key={it.title} className="relative">
                   <span
                     aria-hidden="true"
-                    className={`absolute -left-[1.55rem] top-[0.5rem] h-1.5 w-1.5 rounded-full ring-4 ring-white ${
-                      it.key ? "brand-gradient" : "bg-navy-200"
+                    className={`absolute -left-[1.55rem] top-[0.65rem] h-2 w-2 rounded-full ring-4 ${
+                      it.key
+                        ? "bg-brand-blue ring-navy-50"
+                        : yearIndex === 0
+                          ? "bg-navy-200 ring-navy-50"
+                          : "bg-navy-200 ring-white"
                     }`}
                   />
-                  <p className={`text-small leading-snug ${it.key ? "font-bold" : "text-navy-600"}`}>
+                  <p
+                    className={`text-body-base leading-[1.55] ${
+                      it.key ? "font-semibold text-navy" : "text-navy-600"
+                    }`}
+                  >
                     {it.month && (
-                      <span className="mr-2 text-[0.9rem] font-semibold text-navy-400">
+                      <span className="mr-2 inline-block min-w-9 text-[0.875rem] font-semibold tabular-nums text-navy-400">
                         {it.month}월
                       </span>
                     )}
                     {it.title}
                   </p>
-                  {it.note && <p className="mt-0.5 text-[0.95rem] text-navy-400">{it.note}</p>}
+                  {it.note && <p className="mt-1 text-[0.9375rem] leading-relaxed text-navy-400">{it.note}</p>}
                 </li>
               ))}
             </ul>

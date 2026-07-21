@@ -51,9 +51,35 @@ const config: Config = {
         mid: ["1.5rem", { lineHeight: "1.5" }], // 24
         big: ["2.25rem", { lineHeight: "1.25" }], // 36
         huge: ["3rem", { lineHeight: "1.2" }], // 48
+        // 홈페이지 공통 타이포그래피. 화면별 임의 크기 대신 역할 기준으로 사용한다.
+        "display-hero": [
+          "clamp(2.5rem, 4.4vw, 3.5rem)",
+          { lineHeight: "1.15", letterSpacing: "-0.035em" },
+        ],
+        "display-section": [
+          "clamp(2rem, 3.6vw, 3rem)",
+          { lineHeight: "1.25", letterSpacing: "-0.03em" },
+        ],
+        "heading-card": [
+          "1.5rem",
+          { lineHeight: "1.4", letterSpacing: "-0.02em" },
+        ],
+        "body-lead": [
+          "clamp(1.125rem, 1.7vw, 1.375rem)",
+          { lineHeight: "1.7", letterSpacing: "-0.01em" },
+        ],
+        "body-base": [
+          "clamp(1rem, 1.2vw, 1.125rem)",
+          { lineHeight: "1.85" },
+        ],
+        label: [
+          "0.875rem",
+          { lineHeight: "1.5", letterSpacing: "0.18em" },
+        ],
       },
       maxWidth: {
         content: "72rem",
+        copy: "48rem",
       },
     },
   },
