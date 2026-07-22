@@ -35,7 +35,7 @@ export const hcSections: HcSection[] = [
   {
     "id": "stats",
     "label": "검증",
-    "html": "<section class=\"stats-band\" id=\"numbers\">\n<div class=\"wrap\">\n<h2>연구·공인시험·현장 데이터로 검증해 왔습니다.</h2>\n<div class=\"stat-grid\">\n<div class=\"stat\"><div class=\"v\">6<small>건</small></div><div class=\"k\">보행·근육건강·낙상예방<br/>관련 등록·출원</div></div>\n<div class=\"stat\"><div class=\"v compact\">오차율 8% 이하</div><div class=\"k\">보행속도·걸음수·보폭<br/>KTC 공인시험 기준</div></div>\n<div class=\"stat\"><div class=\"v compact\">약 16.4억원</div><div class=\"k\">누적 R&amp;D 사업비<br/>4년간 수행 과제 기준</div></div>\n<div class=\"stat\"><div class=\"v compact\">IRB 승인</div><div class=\"k\">인체 대상 연구 절차</div></div>\n<div class=\"stat\"><div class=\"v\">1,000<small>여 명</small></div><div class=\"k\">4년간 직접 수집한 인체 데이터</div></div>\n</div>\n</div>\n</section>"
+    "html": "<section class=\"stats-band\" id=\"numbers\">\n<div class=\"wrap\">\n<h2>연구·공인시험·현장 데이터로 검증해 왔습니다.</h2>\n<div class=\"stat-grid\">\n<div class=\"stat\"><div class=\"v compact\">오차율 8% 이하</div><div class=\"k\">보행속도·걸음수·보폭<br/>KTC 공인시험 기준</div></div>\n<div class=\"stat\"><div class=\"v\" style=\"font-size:34px;letter-spacing:-.02em;white-space:nowrap\">1,000<small>여 명</small></div><div class=\"k\">누적 인체 데이터<br/>IRB 승인 절차에 따라 4년간 직접 수집</div></div>\n<div class=\"stat\"><div class=\"v\">5<small>편</small></div><div class=\"k\">SCI 1편·KCI 4편<br/>보행·근육건강 연구 성과</div></div>\n<div class=\"stat\"><div class=\"v\">6<small>건</small></div><div class=\"k\">보행·근육건강·낙상예방<br/>관련 등록·출원</div></div>\n<div class=\"stat\"><div class=\"v compact\">약 37.6억원</div><div class=\"k\">누적 R&amp;D 수행 규모<br/>설립 이후 주관·참여 과제 기준</div></div>\n</div>\n</div>\n</section>"
   },
   {
     "id": "timeline",

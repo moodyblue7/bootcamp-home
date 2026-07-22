@@ -14,11 +14,11 @@ import {
 export const metadata: Metadata = {
   title: "성과·인증",
   description:
-    "특허 등록 1건·출원 5건, 논문 5편(SCI 1편·KCI 4편), KTC 공인시험 검증, 기술이전, 정부 R&D 과제 누적 약 16.4억 원.",
+    "특허 등록 1건·출원 5건, 논문 5편(SCI 1편·KCI 4편), KTC 공인시험 검증, 기술이전, 정부 R&D 누적 수행 규모 약 37.6억 원.",
 };
 
 const summary = [
-  { v: "16.4억원", k: "정부 R&D 과제", note: "누적 직접 기획·수행" },
+  { v: "37.6억원", k: "R&D 수행 규모", note: "누적 주관·참여 과제 기준" },
   { v: "6건", k: "특허", note: "등록 1건 · 출원 5건" },
   { v: "5편", k: "논문", note: "SCI 1편 · KCI 4편" },
   { v: "1건", k: "기술이전", note: "광주대학교 통상실시권" },
@@ -150,7 +150,7 @@ export default function AchievementsPage() {
       {/* 수행 과제 */}
       <Section
         title="주요 수행 과제"
-        lead="설립 이후 수행한 주요 정부 R&D 과제입니다. 누적 수행 규모는 약 16.4억 원입니다."
+        lead="설립 이후 주관·참여한 주요 정부 R&D 과제입니다. 누적 수행 규모는 약 37.6억 원입니다."
         tone="gray"
       >
         <ul className="divide-y divide-navy-100 border-y border-navy-100">
