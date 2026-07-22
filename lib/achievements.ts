@@ -44,6 +44,7 @@ export const papers = [
     year: "2026",
     role: "공동",
     grade: "SCI",
+    topic: "행동인식",
     doi: "10.1109/JIOT.2025.3636271",
   },
   {
@@ -54,6 +55,7 @@ export const papers = [
     year: "2026",
     role: "공동연구",
     grade: "KCI",
+    topic: "근육건강",
     pages: "p. 239",
     doi: "10.14801/jkiit.2026.24.6.239",
   },
@@ -64,6 +66,7 @@ export const papers = [
     year: "2025",
     role: "주저자",
     grade: "KCI",
+    topic: "보행·낙상",
   },
   {
     title: "A Lightweight Machine Learning Model for Fall Detection using Feature Vectors",
@@ -71,6 +74,7 @@ export const papers = [
     year: "2025",
     role: "공동",
     grade: "KCI",
+    topic: "낙상감지",
   },
   {
     title: "보행속도에 따른 고령자 건강지표 설계",
@@ -78,6 +82,7 @@ export const papers = [
     year: "2023",
     role: "교신",
     grade: "KCI",
+    topic: "보행·건강지표",
   },
   {
     title:
@@ -86,6 +91,7 @@ export const papers = [
     year: "2022",
     role: "공동",
     grade: "학술대회",
+    topic: "낙상감지",
   },
 ] as const;
 

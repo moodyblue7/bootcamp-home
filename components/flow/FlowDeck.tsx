@@ -975,29 +975,119 @@ function AchievementsPanel({ section }: { section: string }) {
 
   if (section === "papers") {
     return (
-      <div className={WRAP}>
-        <Kicker />
-        <h2 className="mt-5 font-display text-big font-extrabold tracking-tight sm:text-huge">
-          논문 · 기술이전
+      <div className="mx-auto w-full max-w-content px-6 py-14 md:px-10 md:py-8 lg:pl-44 lg:pr-12">
+        <p className="flow-label">성과·인증 · 논문·기술이전</p>
+        <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+          센서 데이터 연구를,
+          {"\n"}
+          <span className="brand-gradient bg-clip-text text-transparent">논문과 기술이전으로 이어왔습니다.</span>
         </h2>
-        <ul className="mt-10 divide-y divide-navy-100 border-y border-navy-100">
-          {papers.map((p) => (
-            <li key={p.title} className="py-5">
-              <p className="text-small font-semibold leading-relaxed">{p.title}</p>
-              <p className="mt-1.5 text-[0.9rem] text-navy-400">
-                {p.journal} · {p.year} · {p.grade} · {p.role}
-              </p>
-            </li>
+        <p className="mt-3 max-w-[66rem] text-body-lead text-navy-600">
+          스마트폰 센서 기반 행동·보행·낙상 연구를 골격근 비율 추정까지 확장하고, 낙상예방 특허의
+          통상실시권을 확보했습니다.
+        </p>
+
+        <div className="mt-2 flex max-w-[66rem] flex-wrap gap-2">
+          {[
+            "논문 6편",
+            "SCI 1편",
+            "KCI 4편",
+            "국제학술대회 1편",
+            "기술이전 1건",
+          ].map((item, index) => (
+            <span
+              key={item}
+              className={`rounded-full px-3 py-1.5 text-[0.74rem] font-bold ${
+                index === 0 ? "bg-brand-blue text-white" : "border border-navy-100 bg-navy-50 text-navy-600"
+              }`}
+            >
+              {item}
+            </span>
           ))}
-        </ul>
-        <h3 className="mt-10 font-display text-mid font-extrabold">기술이전</h3>
-        <ul className="mt-4 space-y-2">
-          {techTransfer.map((t) => (
-            <li key={t.name} className="text-small text-navy-600">
-              {t.name} — {t.from} · {t.date}
-            </li>
-          ))}
-        </ul>
+        </div>
+
+        <div className="mt-3 grid max-w-[66rem] gap-3 md:grid-cols-[minmax(0,1.04fr)_minmax(0,0.96fr)]">
+          <section className="rounded-[22px] bg-[#10243A] p-4 text-white shadow-[0_18px_42px_rgba(16,36,58,0.16)]">
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="font-display text-[1rem] font-extrabold">2026 최신 연구</h3>
+              <span className="text-[0.7rem] font-bold text-brand-cyan">SCI · KCI</span>
+            </div>
+            <div className="mt-3 grid gap-2.5 xl:grid-cols-2 xl:items-stretch">
+              {papers.slice(0, 2).map((p, index) => (
+                <article
+                  key={p.title}
+                  className={`flex flex-col rounded-xl border p-3.5 ${
+                    index === 1 ? "border-brand-cyan/40 bg-brand-blue" : "border-white/10 bg-white/5"
+                  }`}
+                >
+                  <div className="flex flex-wrap items-center gap-2 text-[0.68rem] font-bold">
+                    <span className={index === 1 ? "text-[#A8F2FF]" : "text-brand-cyan"}>{p.topic}</span>
+                    <span className="text-white/45">{p.grade} · {p.year} · {p.role}</span>
+                  </div>
+                  {"titleKo" in p && p.titleKo ? (
+                    <>
+                      <p className="mt-2 font-display text-[0.92rem] font-extrabold leading-[1.45] text-white">
+                        {p.titleKo}
+                      </p>
+                      <p className="mt-1 text-[0.72rem] font-medium leading-[1.4] text-white/60">{p.title}</p>
+                    </>
+                  ) : (
+                    <p className="mt-2 text-[0.88rem] font-bold leading-[1.45] text-white">{p.title}</p>
+                  )}
+                  <p className="mt-2 text-[0.7rem] font-medium leading-[1.4] text-white/50">
+                    {p.journal}
+                    {"pages" in p && p.pages ? ` · ${p.pages}` : ""}
+                  </p>
+                  {"authors" in p && p.authors && (
+                    <p className="mt-1 text-[0.68rem] font-medium leading-[1.35] text-white/50">{p.authors}</p>
+                  )}
+                  {"doi" in p && p.doi && (
+                    <a
+                      href={`https://doi.org/${p.doi}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`mt-auto inline-flex pt-1.5 text-[0.68rem] font-bold ${
+                        index === 1 ? "text-[#A8F2FF]" : "text-brand-cyan"
+                      }`}
+                    >
+                      DOI {p.doi} ↗
+                    </a>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="rounded-[22px] border border-navy-100 bg-navy-50 p-4 shadow-[0_12px_30px_rgba(23,35,46,0.05)]">
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="font-display text-[1rem] font-extrabold text-navy">연구 축적</h3>
+              <span className="text-[0.7rem] font-bold text-brand-blue">2022 — 2025</span>
+            </div>
+            <ol className="mt-2 divide-y divide-navy-100">
+              {papers.slice(2).map((p) => (
+                <li key={p.title} className="grid grid-cols-[2.8rem_minmax(0,1fr)] gap-2.5 py-2.5">
+                  <span className="pt-0.5 text-[0.7rem] font-bold text-brand-blue">{p.year}</span>
+                  <div>
+                    <p className="text-[0.78rem] font-semibold leading-[1.42] text-navy-700">{p.title}</p>
+                    <p className="mt-1 text-[0.68rem] font-semibold text-navy-400">
+                      {p.topic} · {p.grade} · {p.role}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </div>
+
+        <div className="mt-3 flex max-w-[66rem] flex-col gap-2 rounded-xl border border-brand-blue/15 bg-brand-blue/5 px-4 py-3 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-3">
+            <span className="rounded-full bg-brand-blue px-2.5 py-1 text-[0.68rem] font-bold text-white">기술이전 1건</span>
+            <strong className="text-[0.84rem] font-extrabold text-navy">{techTransfer[0].name}</strong>
+          </div>
+          <p className="text-[0.74rem] font-semibold text-navy-500">
+            {techTransfer[0].from} · {techTransfer[0].date}
+          </p>
+        </div>
       </div>
     );
   }
