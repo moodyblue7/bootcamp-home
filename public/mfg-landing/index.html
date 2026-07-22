@@ -157,6 +157,23 @@ nav{position:sticky;top:0;z-index:50;background:rgba(244,246,241,.85);backdrop-f
 .standard-phase p{font-size:12.5px;line-height:1.55;color:#62717E;margin-top:5px}
 .standard-visual .screen{background:#10243A;border-radius:22px;padding:12px;box-shadow:0 22px 54px rgba(23,35,46,.18)}
 
+/* 06 · Roll-out Kit */
+#capabilities:has(.rollout-kit){background:#FFFFFF;font-family:'Freesentation',sans-serif;padding:44px 0}
+.rollout-kit{display:block;padding:0;border-top:0}
+.rollout-head{max-width:1000px}
+.rollout-head .eyebrow{font-size:16px;line-height:1.5;letter-spacing:.16em;color:#0B3FD8;margin-bottom:16px}
+#capabilities .rollout-head h2{font-family:'S-Core Dream','Freesentation',sans-serif;font-size:clamp(34px,4vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.24;color:#17232E}
+.rollout-head .rollout-lead{font-size:17.5px;line-height:1.72;color:#3A4956;font-weight:600;margin-top:20px;max-width:920px}
+.rollout-head .rollout-status{display:inline-flex;align-items:center;margin-top:12px;font-size:13.5px;font-weight:600;color:#526170}
+.rollout-head .rollout-status::before{content:"";width:7px;height:7px;border-radius:50%;background:#0B3FD8;margin-right:8px}
+.rollout-body{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:30px;align-items:center;margin-top:24px}
+.rollout-stages{display:grid;gap:9px}
+.rollout-stage{display:grid;grid-template-columns:42px 1fr;gap:13px;align-items:center;border:1px solid #D7E1EC;border-radius:15px;background:#F7F9FC;padding:13px 15px}
+.rollout-stage .stage-num{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;background:#EDF3FF;color:#0B3FD8;font-size:12px;font-weight:700;letter-spacing:.05em}
+.rollout-stage b{display:block;font-family:'S-Core Dream','Freesentation',sans-serif;font-size:16px;line-height:1.4;color:#17232E}
+.rollout-stage p{font-size:13px;line-height:1.55;color:#62717E;margin-top:3px}
+.rollout-visual .screen{background:#10243A;border-radius:22px;padding:12px;box-shadow:0 22px 54px rgba(23,35,46,.18)}
+
 /* 3개 추진 영역 요약 */
 .responsibility-summary{background:#F7F9FC;font-family:'Freesentation',sans-serif}
 .responsibility-summary .summary-head{max-width:880px;margin-bottom:34px}
@@ -247,6 +264,11 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
   .standard-copy .standard-lead{font-size:15.5px;margin-top:18px}
   .standard-phases{grid-template-columns:1fr;gap:8px;margin-top:18px}
   .standard-phase{padding:12px 14px}
+  #capabilities .rollout-head h2{font-size:36px}
+  .rollout-head .rollout-lead{font-size:16px;margin-top:18px}
+  .rollout-body{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:20px;margin-top:18px}
+  .rollout-stage{padding:11px 12px}
+  .rollout-stage p{font-size:12.5px}
   .responsibility-summary .summary-head{margin-bottom:26px}
   .responsibility-summary h2{font-size:36px}
   .responsibility-summary .summary-lead{font-size:16.5px;margin-top:18px}
@@ -275,6 +297,11 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
   .mfg-ai-detail{grid-template-columns:1fr}
   .standard-integration{grid-template-columns:1fr}
   #capabilities:has(.standard-integration){padding:44px 0}
+  #capabilities:has(.rollout-kit){padding:44px 0}
+  #capabilities .rollout-head h2{font-size:32px}
+  .rollout-body{grid-template-columns:1fr}
+  .rollout-stage{padding:8px 12px}
+  .rollout-stage p{display:none}
   .responsibility-grid{grid-template-columns:1fr}
   .responsibility-card{min-height:0}
   .summary-foot{align-items:flex-start;flex-direction:column}
@@ -563,54 +590,74 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
       </div>
     </div>
 
-    <!-- 03 inspection intelligence -->
-    <div class="feature">
-      <div class="f-text">
-        <div class="f-num mono">03 — INSPECTION INTELLIGENCE</div>
-        <h3>검사를 판정에서 예방으로</h3>
-        <p>미르기술의 고정밀 SPI·AOI 데이터를 MES·AI와 실시간 연계합니다.
-        양·불을 가리는 데서 그치지 않고 <b>이상 징후를 미리 감지</b>해,
-        불량이 생기기 전에 상류 공정 조건을 바로잡습니다.</p>
-        <div class="f-tags"><span class="f-tag">3D AOI/SPI</span><span class="f-tag">원인 추적</span></div>
+    <!-- 06 Roll-out Kit -->
+    <div class="feature rollout-kit">
+      <div class="rollout-head">
+        <div class="eyebrow">06 · ROLL-OUT KIT</div>
+        <h2>한 번의 실증을,<br>반복 가능한 현장 도입으로 만듭니다.</h2>
+        <p class="rollout-lead">AI 기능만 전달해서는 다른 라인과 거점에 안정적으로 안착하기 어렵습니다.<br class="wide-break">
+        부트캠프는 설치·교육·운영·유지보수·다국어 현지화를 하나의 도입 체계로 제품화합니다.</p>
+        <div class="rollout-status">2026–2028 · v0.5 검증 → v1.0 완성 추진 중</div>
       </div>
-      <div class="f-media">
-        <div class="screen">
-          <svg viewBox="0 0 560 250" xmlns="http://www.w3.org/2000/svg" aria-label="검사 인텔리전스: 불량 유형 감지와 원인 추적">
-            <rect width="560" height="250" rx="14" fill="#0F2A22"/>
-            <text x="22" y="34" font-family="'Space Grotesk',sans-serif" font-size="13" font-weight="700" fill="#fff">Inspection Intelligence · AOI</text>
-            <!-- board grid -->
-            <g transform="translate(22,54)">
-              <rect width="300" height="176" rx="10" fill="#123B2E"/>
-              <!-- solder pads grid -->
-              <g fill="#1E4A3B">
-                <rect x="24" y="24" width="36" height="24" rx="3"/><rect x="72" y="24" width="36" height="24" rx="3"/>
-                <rect x="120" y="24" width="36" height="24" rx="3"/><rect x="168" y="24" width="36" height="24" rx="3"/>
-                <rect x="216" y="24" width="36" height="24" rx="3"/>
-                <rect x="24" y="76" width="36" height="24" rx="3"/><rect x="120" y="76" width="36" height="24" rx="3"/>
-                <rect x="216" y="76" width="36" height="24" rx="3"/>
-                <rect x="24" y="128" width="36" height="24" rx="3"/><rect x="72" y="128" width="36" height="24" rx="3"/>
-                <rect x="168" y="128" width="36" height="24" rx="3"/><rect x="216" y="128" width="36" height="24" rx="3"/>
+
+      <div class="rollout-body">
+        <div class="rollout-stages">
+          <article class="rollout-stage">
+            <div class="stage-num">01</div>
+            <div><b>설치</b><p>설치 절차와 현장 설정을 정리해 초기 도입의 편차를 줄입니다.</p></div>
+          </article>
+          <article class="rollout-stage">
+            <div class="stage-num">02</div>
+            <div><b>운영</b><p>교육과 운영 SOP를 묶어 같은 기준으로 운영할 수 있게 합니다.</p></div>
+          </article>
+          <article class="rollout-stage">
+            <div class="stage-num">03</div>
+            <div><b>확산</b><p>유지보수·다국어·확산 체계를 제품화해 다거점 도입을 준비합니다.</p></div>
+          </article>
+        </div>
+
+        <div class="f-media rollout-visual">
+          <div class="screen">
+            <svg viewBox="0 0 620 340" xmlns="http://www.w3.org/2000/svg" aria-label="설치·교육·운영 SOP·유지보수·다국어·확산 체계로 구성된 Roll-out Kit와 광주 파일럿에서 국내외 생산거점으로 이어지는 확산 방향">
+              <defs><linearGradient id="roll-flow" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#00CFF0"/><stop offset="1" stop-color="#2E67F8"/></linearGradient></defs>
+              <rect width="620" height="340" rx="18" fill="#10243A"/>
+              <text x="28" y="35" font-family="'Freesentation',sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#8EA9C3">ROLL-OUT KIT · REPEATABLE ADOPTION</text>
+              <text x="28" y="58" font-family="'S-Core Dream','Freesentation',sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">기술을 다른 현장에서도 운영할 수 있는 제품 체계로</text>
+
+              <g font-family="'Freesentation',sans-serif">
+                <rect x="28" y="84" width="174" height="104" rx="15" fill="#FFFFFF"/>
+                <text x="47" y="108" font-size="10" font-weight="700" letter-spacing="1" fill="#0B3FD8">INSTALL</text>
+                <rect x="47" y="122" width="136" height="24" rx="7" fill="#EDF3FF"/><text x="59" y="139" font-size="10.5" font-weight="700" fill="#17232E">설치 가이드</text>
+                <rect x="47" y="153" width="136" height="24" rx="7" fill="#EDF3FF"/><text x="59" y="170" font-size="10.5" font-weight="700" fill="#17232E">현장 교육</text>
+
+                <rect x="223" y="84" width="174" height="104" rx="15" fill="#FFFFFF"/>
+                <text x="242" y="108" font-size="10" font-weight="700" letter-spacing="1" fill="#0B3FD8">OPERATE</text>
+                <rect x="242" y="122" width="136" height="24" rx="7" fill="#EDF3FF"/><text x="254" y="139" font-size="10.5" font-weight="700" fill="#17232E">운영 SOP</text>
+                <rect x="242" y="153" width="136" height="24" rx="7" fill="#EDF3FF"/><text x="254" y="170" font-size="10.5" font-weight="700" fill="#17232E">유지보수</text>
+
+                <rect x="418" y="84" width="174" height="104" rx="15" fill="#FFFFFF"/>
+                <text x="437" y="108" font-size="10" font-weight="700" letter-spacing="1" fill="#0B3FD8">SCALE</text>
+                <rect x="437" y="122" width="136" height="24" rx="7" fill="#DDE9FF"/><text x="449" y="139" font-size="10.5" font-weight="700" fill="#0B3FD8">다국어 현지화</text>
+                <rect x="437" y="153" width="136" height="24" rx="7" fill="#DDE9FF"/><text x="449" y="170" font-size="10.5" font-weight="700" fill="#0B3FD8">다거점 확산 체계</text>
+
+                <text x="28" y="222" font-size="10" font-weight="700" letter-spacing="1" fill="#8EA9C3">EXPANSION DIRECTION</text>
+                <rect x="28" y="237" width="154" height="61" rx="13" fill="#17314B" stroke="#2D4B67"/>
+                <text x="105" y="260" text-anchor="middle" font-size="11.5" font-weight="700" fill="#FFFFFF">광주 SMT 파일럿</text>
+                <text x="105" y="279" text-anchor="middle" font-size="9.5" fill="#8EA9C3">Kit v0.5 검증</text>
+                <path d="M182 267 H225" stroke="url(#roll-flow)" stroke-width="3" stroke-dasharray="5 4"/><path d="M217 261 L227 267 L217 273" fill="none" stroke="#2E67F8" stroke-width="3"/>
+                <rect x="230" y="237" width="154" height="61" rx="13" fill="#17314B" stroke="#2D4B67"/>
+                <text x="307" y="260" text-anchor="middle" font-size="11.5" font-weight="700" fill="#FFFFFF">국내 타 라인</text>
+                <text x="307" y="279" text-anchor="middle" font-size="9.5" fill="#8EA9C3">반복 도입 준비</text>
+                <path d="M384 267 H427" stroke="url(#roll-flow)" stroke-width="3" stroke-dasharray="5 4"/><path d="M419 261 L429 267 L419 273" fill="none" stroke="#2E67F8" stroke-width="3"/>
+                <rect x="432" y="237" width="160" height="61" rx="13" fill="#0B3FD8"/>
+                <text x="512" y="260" text-anchor="middle" font-size="11.5" font-weight="700" fill="#FFFFFF">해외 생산거점</text>
+                <text x="512" y="279" text-anchor="middle" font-size="9.5" fill="#DCE7FF">확산 목표</text>
+
+                <rect x="28" y="312" width="564" height="12" rx="6" fill="#17314B"/>
+                <rect x="28" y="312" width="188" height="12" rx="6" fill="#00CFF0"/><rect x="216" y="312" width="188" height="12" fill="#2E67F8" opacity=".72"/><rect x="404" y="312" width="188" height="12" rx="6" fill="#2E67F8" opacity=".36"/>
               </g>
-              <!-- flagged defects -->
-              <rect x="72" y="76" width="36" height="24" rx="3" fill="none" stroke="#E8A33A" stroke-width="2.5"/>
-              <text x="90" y="70" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="8" fill="#E8A33A">Void</text>
-              <rect x="168" y="76" width="36" height="24" rx="3" fill="none" stroke="#D4553F" stroke-width="2.5"/>
-              <text x="186" y="70" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="8" fill="#D4553F">Bridge</text>
-              <rect x="120" y="128" width="36" height="24" rx="3" fill="none" stroke="#E8A33A" stroke-width="2.5"/>
-            </g>
-            <!-- side legend -->
-            <g transform="translate(340,54)" font-family="'Noto Sans KR',sans-serif">
-              <rect width="198" height="176" rx="10" fill="#123B2E"/>
-              <text x="16" y="28" font-size="10" font-weight="700" fill="#8FD3B4">감지된 불량 · 원인</text>
-              <g font-size="10">
-                <circle cx="24" cy="56" r="5" fill="#D4553F"/><text x="38" y="60" fill="#fff">Bridge → 과열·Paste</text>
-                <circle cx="24" cy="86" r="5" fill="#E8A33A"/><text x="38" y="90" fill="#fff">Void → Reflow 프로파일</text>
-                <circle cx="24" cy="116" r="5" fill="#E8A33A"/><text x="38" y="120" fill="#fff">Tombstone → 열 불균형</text>
-              </g>
-              <rect x="16" y="136" width="166" height="26" rx="7" fill="#0F2A22"/>
-              <text x="24" y="153" font-size="9" fill="#5CC3B0" font-family="'Space Grotesk',sans-serif">→ Reflow Zone 보정 권고</text>
-            </g>
-          </svg>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
