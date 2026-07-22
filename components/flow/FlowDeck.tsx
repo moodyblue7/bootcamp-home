@@ -1333,7 +1333,7 @@ function CompanyPanel({ title, kicker }: { title: string; kicker?: string }) {
 
       <div className="mt-5 grid max-w-[66rem] gap-3 md:grid-cols-3">
         {inquiryTypes.map((item, index) => (
-          <article key={item.title} className="rounded-[20px] border border-navy-100 bg-navy-50 p-4.5">
+          <article key={item.title} className="rounded-[20px] border border-navy-100 bg-navy-50 p-5">
             <span className="text-[0.68rem] font-extrabold tracking-[0.12em] text-brand-blue">
               {String(index + 1).padStart(2, "0")}
             </span>
