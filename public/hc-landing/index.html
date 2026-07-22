@@ -213,8 +213,33 @@ nav{
 .tl-date .flag{color:var(--pine);font-weight:900}
 .tl-item.now .tl-date .flag{background:var(--lime);color:var(--ink);padding:2px 8px;border-radius:6px}
 .tl-item h3{font-size:21px;font-weight:900;margin:4px 0 4px;letter-spacing:-.01em}
-.tl-item p{font-size:14px;color:var(--muted);max-width:520px}
+.tl-item p{font-size:14px;color:var(--muted);max-width:720px}
+.tl-copy-line{display:block}
 .tl-thumb .photo{aspect-ratio:16/10;border-radius:16px}
+.tl-thumb .photo.tl-evidence::after{display:none}
+.tl-thumb .photo.tl-silvercare{background:#fff}
+.tl-thumb .photo.tl-silvercare img{object-fit:contain}
+.tl-thumb .tl-proof{
+  position:absolute;left:8px;bottom:8px;z-index:4;
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 8px;border:1px solid rgba(228,232,236,.92);border-radius:999px;
+  background:rgba(255,255,255,.92);box-shadow:0 4px 12px rgba(23,35,46,.12);
+  color:var(--ink);font-size:10.5px;font-weight:700;line-height:1;
+  backdrop-filter:blur(5px);
+}
+.tl-thumb .tl-proof::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--pine)}
+.tl-thumb .tl-privacy-mask{
+  position:absolute;z-index:3;border-radius:5px;
+  background:rgba(255,255,255,.62);
+  -webkit-backdrop-filter:blur(5px) saturate(.7);
+  backdrop-filter:blur(5px) saturate(.7);
+}
+.tl-thumb .tl-risk-1{left:3.6%;top:47.9%;width:22.4%;height:10.4%}
+.tl-thumb .tl-risk-2{left:39.1%;top:47.9%;width:22.7%;height:10.4%}
+.tl-thumb .tl-risk-3{left:75%;top:47.9%;width:22.5%;height:10.4%}
+.tl-thumb .tl-med-1{left:3.6%;top:74%;width:22.4%;height:13.8%}
+.tl-thumb .tl-med-2{left:39.1%;top:74%;width:22.7%;height:13.8%}
+.tl-thumb .tl-med-3{left:75%;top:74%;width:22.5%;height:13.8%}
 .tl-thumb .ph-label .cam{font-size:18px}
 .tl-thumb .ph-label b{font-size:11px}
 .tl-thumb .ph-label span{display:none}
@@ -260,6 +285,9 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
   .stat:last-child{grid-column:1/-1}
   .tl-item{grid-template-columns:1fr}
   .cta-in{padding:48px 24px}
+}
+@media(max-width:640px){
+  .tl-copy-line{display:inline}
 }
 </style>
 </head>
@@ -418,58 +446,68 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
 <!-- ═══════════ TIMELINE ═══════════ -->
 <section id="timeline">
   <div class="wrap">
-    <div class="eyebrow">Product Timeline</div>
-    <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:900;letter-spacing:-.02em">걸어온 길, 걸어갈 길</h2>
+    <div class="eyebrow">R&amp;D TO FIELD</div>
+    <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:900;letter-spacing:-.02em">연구에서 현장으로, 검증에서 확산으로.</h2>
     <div class="tl">
       <div class="tl-item done">
         <div>
-          <div class="tl-date mono">2022 — 2024 · <span class="flag">DONE!</span></div>
-          <h3>원천 기술 확보</h3>
-          <p>보행·행동·낙상 분석 알고리즘 개발. 기술의 근간을 세우고 공인시험으로 정확도를 검증했습니다.</p>
+          <div class="tl-date mono">2022 — 2024 · <span class="flag">검증 완료</span></div>
+          <h3>보행분석 기술 개발·공인시험</h3>
+          <p><span class="tl-copy-line">스마트폰 센서 기반 보행·행동·낙상 분석 알고리즘을 개발하고,</span> <span class="tl-copy-line">KTC 공인시험으로 보행속도·걸음수·보폭의 오차율 8% 이하를 확인했습니다.</span></p>
         </div>
-        <div class="tl-thumb"><div class="photo">
-          <div class="ph-label"><div class="cam">📷</div><b>tl-2022-lab.jpg</b></div>
-          <img src="images/tl-2022-lab.jpg" alt="초기 알고리즘 연구 장면" onerror="this.remove()">
+        <div class="tl-thumb"><div class="photo tl-evidence">
+          <div class="ph-label"><div class="cam">📷</div><b>tl-2022-ktc-test.png</b></div>
+          <img src="images/tl-2022-ktc-test.png" alt="보행 분석 알고리즘 공인시험 장면" onerror="this.remove()">
+          <span class="tl-proof">KTC 공인시험</span>
         </div></div>
       </div>
       <div class="tl-item done">
         <div>
-          <div class="tl-date mono">2024 — 2025 · <span class="flag">DONE!</span></div>
-          <h3>서비스로 다듬기</h3>
-          <p>시니어 모니터링 앱 개발과 현장 데이터 수집. 기술이 실제 어르신 손에서 작동하도록 다듬었습니다.</p>
+          <div class="tl-date mono">2024 — 2025 · <span class="flag">서비스 구현</span></div>
+          <h3>AIWALKER 서비스 개발</h3>
+          <p><span class="tl-copy-line">AIWALKER 앱을 개발하고, 고령자 보행 데이터 수집부터 결과 확인과</span> <span class="tl-copy-line">개인 변화 추적까지 이어지는 서비스 흐름을 구현했습니다.</span></p>
         </div>
-        <div class="tl-thumb"><div class="photo">
-          <div class="ph-label"><div class="cam">📷</div><b>tl-2024-app.jpg</b></div>
-          <img src="images/tl-2024-app.jpg" alt="앱 개발과 데이터 수집" onerror="this.remove()">
+        <div class="tl-thumb"><div class="photo tl-evidence">
+          <div class="ph-label"><div class="cam">📷</div><b>tl-2024-aiwalker-app.png</b></div>
+          <img src="images/tl-2024-aiwalker-app.png" alt="AIWALKER 로그인과 메인 화면" onerror="this.remove()">
+          <span class="tl-proof">AIWALKER 앱</span>
         </div></div>
       </div>
       <div class="tl-item done">
         <div>
-          <div class="tl-date mono">2025 · <span class="flag">DONE!</span></div>
-          <h3>근감소 위험 분석 AI</h3>
-          <p>보행 변화로 근육 건강 위험을 읽는 예측 모델 개발과 특허 출원.</p>
+          <div class="tl-date mono">2025 · <span class="flag">연구 고도화</span></div>
+          <h3>근육 건강 관리 AI 고도화</h3>
+          <p><span class="tl-copy-line">누적 보행 데이터를 바탕으로 개인의 변화를 단계별 근육 건강 관리 신호로 제공하는</span> <span class="tl-copy-line">AI 모델을 고도화하고 관련 특허를 출원했습니다.</span></p>
         </div>
-        <div class="tl-thumb"><div class="photo">
+        <div class="tl-thumb"><div class="photo tl-evidence tl-silvercare">
           <div class="ph-label"><div class="cam">📷</div><b>tl-2025-ai.jpg</b></div>
-          <img src="images/tl-2025-ai.jpg" alt="AI 모델 개발" onerror="this.remove()">
+          <img src="images/tl-2025-silvercare-ui.png" alt="실버케어링크 단계별 건강관리 화면" onerror="this.remove()">
+          <span class="tl-privacy-mask tl-risk-1" aria-hidden="true"></span>
+          <span class="tl-privacy-mask tl-risk-2" aria-hidden="true"></span>
+          <span class="tl-privacy-mask tl-risk-3" aria-hidden="true"></span>
+          <span class="tl-privacy-mask tl-med-1" aria-hidden="true"></span>
+          <span class="tl-privacy-mask tl-med-2" aria-hidden="true"></span>
+          <span class="tl-privacy-mask tl-med-3" aria-hidden="true"></span>
+          <span class="tl-proof">실버케어링크 UI</span>
         </div></div>
       </div>
       <div class="tl-item now">
         <div>
-          <div class="tl-date mono">2026 · <span class="flag">NOW</span></div>
+          <div class="tl-date mono">2026 · <span class="flag">현장 실증 중</span></div>
           <h3>생활체육 현장 실증</h3>
-          <p>광주 서구체육회 파크골프장 리빙랩 — 어르신이 실제 운동하는 현장에서 서비스를 검증하고 있습니다.</p>
+          <p><span class="tl-copy-line">광주 서구체육회 파크골프장 리빙랩에서 고령자 보행 데이터를 수집하고,</span> <span class="tl-copy-line">측정·분석·결과 제공 전 과정의 현장 운영성을 검증하고 있습니다.</span></p>
         </div>
-        <div class="tl-thumb"><div class="photo">
-          <div class="ph-label"><div class="cam">📷</div><b>tl-2026-livinglab.jpg</b></div>
-          <img src="images/tl-2026-livinglab.jpg" alt="파크골프장 리빙랩 실증 현장" onerror="this.remove()">
+        <div class="tl-thumb"><div class="photo tl-evidence">
+          <div class="ph-label"><div class="cam">📷</div><b>tl-2026-parkgolf-walk.png</b></div>
+          <img src="images/tl-2026-parkgolf-walk.png" alt="파크골프장 측정 구간을 걷는 현장 실증 장면" onerror="this.remove()">
+          <span class="tl-proof">파크골프 현장 실증</span>
         </div></div>
       </div>
       <div class="tl-item">
         <div>
-          <div class="tl-date mono">2027+ · <span class="flag" style="color:var(--muted)">NEXT GOAL</span></div>
-          <h3>지역에서 전국으로</h3>
-          <p>실증 레퍼런스를 바탕으로 광주·전남 체육·복지시설을 거쳐 전국 생활체육시설로 확산합니다.</p>
+          <div class="tl-date mono">2027+ · <span class="flag" style="color:var(--muted)">확산 계획</span></div>
+          <h3>실증 모델의 지역·전국 확산</h3>
+          <p><span class="tl-copy-line">광주·전남 체육·복지시설에서 실증 레퍼런스를 축적하고,</span> <span class="tl-copy-line">지자체와 운영기관이 반복 도입할 수 있는 AI 근육건강 체크존 모델로</span> <span class="tl-copy-line">확산하는 것이 다음 목표입니다.</span></p>
         </div>
         <div></div>
       </div>
