@@ -164,7 +164,7 @@ nav{
 .f-text h3{font-size:clamp(24px,2.2vw,28px);font-weight:800;letter-spacing:-.025em;line-height:1.35;margin-bottom:14px}
 .f-text p{font-size:18px;line-height:1.85;color:var(--muted);max-width:48rem}
 .f-text p b{color:var(--ink)}
-.f-next-line{display:inline-block;white-space:nowrap}
+.f-copy-line{display:inline-block;white-space:nowrap}
 .f-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
 .f-tag{font-size:14px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--ink)}
 .f-media{position:relative}
@@ -253,7 +253,8 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
   .chip.c2{right:2%}
   .feature,.feature.flip{grid-template-columns:1fr;gap:24px}
   .feature.flip .f-media{order:0}
-  .f-next-line{white-space:normal}
+  .f-copy-line{display:inline;white-space:normal}
+  .f-copy-break{display:none}
   .stat-grid{grid-template-columns:1fr 1fr}
   .stat:last-child{grid-column:1/-1}
   .tl-item{grid-template-columns:1fr}
@@ -331,7 +332,7 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
       <div class="f-text">
         <div class="f-num">01 — 데이터 수집</div>
         <h3>평소의 걸음을 데이터로 수집합니다</h3>
-        <p>시설에서 간편하게 체크인한 뒤 평소처럼 걸으면 스마트폰 센서가<br><b>걸음 속도·보폭·리듬</b>을 조용히 읽습니다.<br><span class="f-next-line">특별한 동작이나 새로 배울 것은 없습니다.</span></p>
+        <p><span class="f-copy-line">시설에서 간편하게 체크인한 뒤 평소처럼 걸으면 스마트폰 센서가</span><br class="f-copy-break"><span class="f-copy-line">걸을 때의 움직임 데이터를 조용히 수집합니다.</span><br class="f-copy-break"><span class="f-copy-line">특별한 동작이나 새로 배울 것은 없습니다.</span></p>
         <div class="f-tags"><span class="f-tag">스마트폰 센서</span><span class="f-tag">간편 체크인</span></div>
       </div>
       <div class="f-media">
@@ -349,9 +350,9 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
     <div class="feature flip">
       <div class="f-text">
         <div class="f-num">02 — AI 분석</div>
-        <h3>보행 데이터를 근육 건강 관리 신호로 바꿉니다</h3>
-        <p>AIWALKER는 보행속도·걸음수·보폭 등 보행 특성을 분석해, 결과를 이해하기 쉬운 <b>단계별 근육 건강 관리 신호</b>로 바꿉니다.</p>
-        <div class="f-tags"><span class="f-tag">보행 특성 분석</span><span class="f-tag">단계별 관리 신호</span></div>
+        <h3>수집한 보행 데이터를 분석해,<br>근육 건강 관리 신호로 바꿉니다</h3>
+        <p><span class="f-copy-line">AIWALKER가 보행속도·걸음수·보폭 등 보행 특성을 분석하고,</span><br class="f-copy-break"><span class="f-copy-line">결과를 이해하기 쉬운 <b>단계별 근육 건강 관리 신호</b>로 제공합니다.</span></p>
+        <div class="f-tags"><span class="f-tag">AIWALKER 분석</span><span class="f-tag">단계별 관리 신호</span></div>
       </div>
       <div class="f-media">
         <div class="photo">
@@ -368,9 +369,9 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
     <div class="feature">
       <div class="f-text">
         <div class="f-num">03 — 변화 추적</div>
-        <h3>한 번의 수치보다 개인의 변화를 봅니다</h3>
-        <p>측정 기록을 누적해 개인별 기준선과 변화 추이를 확인합니다. 다른 사람과 단순 비교하지 않고 <b>자신의 이전 기록을 중심으로</b> 근육 건강 관리 흐름을 살펴봅니다.</p>
-        <div class="f-tags"><span class="f-tag">개인 기준선</span><span class="f-tag">변화 추이</span></div>
+        <h3>한 번의 결과보다,<br>개인의 변화를 확인합니다</h3>
+        <p><span class="f-copy-line">측정 기록을 누적해 자신의 이전 결과와 변화 추이를 확인합니다.</span><br class="f-copy-break"><span class="f-copy-line">다른 사람과 단순 비교하지 않고, 개인의 변화 흐름을 중심으로</span><br class="f-copy-break"><span class="f-copy-line"><b>근육 건강 관리 정보</b>를 살펴봅니다.</span></p>
+        <div class="f-tags"><span class="f-tag">측정 기록 누적</span><span class="f-tag">이전 기록 비교</span></div>
       </div>
       <div class="f-media">
         <div class="photo">
@@ -385,9 +386,9 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
     <div class="feature flip">
       <div class="f-text">
         <div class="f-num">04 — 보호자 연계</div>
-        <h3>본인 동의 아래 보호자와 변화를 공유합니다</h3>
-        <p>실버케어링크를 통해 본인 동의 범위에서 보호자가 <b>변화 추이와 알림</b>을 함께 확인할 수 있습니다. 지속적인 근육 건강 관리를 돕는 연결 기능입니다.</p>
-        <div class="f-tags"><span class="f-tag">보호자 앱</span><span class="f-tag">동의 기반 공유</span></div>
+        <h3>본인 동의 아래,<br>보호자와 변화를 공유합니다</h3>
+        <p><span class="f-copy-line">실버케어링크를 통해 본인 동의 범위에서 보호자가</span><br class="f-copy-break"><span class="f-copy-line"><b>변화 추이와 알림</b>을 함께 확인할 수 있습니다.</span><br class="f-copy-break"><span class="f-copy-line">일상에서 변화를 꾸준히 살펴볼 수 있도록 본인과 보호자를 연결합니다.</span></p>
+        <div class="f-tags"><span class="f-tag">실버케어링크</span><span class="f-tag">동의 기반 공유</span></div>
       </div>
       <div class="f-media">
         <div class="photo">
