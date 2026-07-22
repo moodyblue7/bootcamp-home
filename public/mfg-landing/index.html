@@ -240,22 +240,32 @@ nav{position:sticky;top:0;z-index:50;background:rgba(244,246,241,.85);backdrop-f
 .project-flow b{font-size:14px;color:#7FDBEE}
 
 /* roadmap */
-.stage-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
-.stage{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px;position:relative}
-.stage.now{border-color:var(--pine);border-width:1.5px}
-.stage .idx{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--pine)}
-.stage h3{font-size:19px;font-weight:900;margin:6px 0 4px;letter-spacing:-.01em}
-.stage .when{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:12px}
-.stage ul{list-style:none}
-.stage li{font-size:13px;color:var(--ink);padding:5px 0 5px 16px;position:relative}
-.stage li::before{content:"";position:absolute;left:2px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--pine)}
-.stage .tag{position:absolute;top:18px;right:18px;font-size:10px;font-weight:900;border-radius:6px;padding:2px 8px}
-.stage.now .tag{background:var(--lime);color:var(--ink)}
-.stage:not(.now) .tag{background:#EEF1EC;color:var(--muted)}
-.flowline{display:flex;align-items:center;gap:10px;margin-top:26px;flex-wrap:wrap;font-size:13.5px;font-weight:800;color:var(--ink)}
-.flowline .node{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px}
-.flowline .node.hi{background:var(--dark);color:#fff}
-.flowline .ar{color:var(--pine);font-weight:900}
+/* 09 · 개발·실증 로드맵 */
+.commercial-roadmap{background:#FFFFFF;font-family:'Freesentation',sans-serif;padding:44px 0}
+.roadmap-head{max-width:1030px}
+.commercial-roadmap .eyebrow{font-size:16px;line-height:1.5;letter-spacing:.16em;color:#0B3FD8;margin-bottom:16px}
+.commercial-roadmap h2{font-family:'S-Core Dream','Freesentation',sans-serif;font-size:clamp(34px,4vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.24;color:#17232E}
+.roadmap-lead{font-size:17.5px;line-height:1.72;color:#3A4956;font-weight:600;margin-top:20px;max-width:980px}
+.roadmap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:24px}
+.roadmap-card{position:relative;border:1px solid #D7E1EC;border-radius:19px;background:#F7F9FC;padding:20px 20px 18px;overflow:hidden}
+.roadmap-card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:#C5D3E3}
+.roadmap-card.current{background:#EDF3FF;border-color:#B8CCEA}
+.roadmap-card.current::before{background:linear-gradient(90deg,#0B3FD8,#00CFF0)}
+.roadmap-card.final::before{background:#2E67F8}
+.roadmap-card .stage-tag{font-size:15px;font-weight:700;letter-spacing:.07em;color:#0B3FD8}
+.roadmap-card h3{font-family:'S-Core Dream','Freesentation',sans-serif;font-size:20px;line-height:1.42;font-weight:800;color:#17232E;margin-top:8px}
+.roadmap-card ul{list-style:none;margin-top:12px}
+.roadmap-card li{position:relative;font-size:14.5px;line-height:1.55;color:#526170;padding:4px 0 4px 14px}
+.roadmap-card li::before{content:"";position:absolute;left:0;top:12px;width:5px;height:5px;border-radius:50%;background:#0B3FD8}
+.expansion-direction{display:flex;align-items:center;gap:9px;margin-top:17px;border:1px solid #D7E1EE;border-radius:15px;background:#F7FAFF;padding:12px 15px}
+.expansion-direction .direction-label{flex:0 0 auto;font-size:15px;font-weight:700;letter-spacing:.06em;color:#0B3FD8;margin-right:4px}
+.expansion-direction .direction-node{flex:1;border:1px solid #C8D5E3;border-radius:10px;background:#FFFFFF;padding:8px 10px;text-align:center}
+.expansion-direction .direction-node b{display:block;font-size:14.5px;color:#17232E}
+.expansion-direction .direction-node span{display:block;font-size:12.5px;color:#71808E;margin-top:2px}
+.expansion-direction .direction-node.final{background:#0B3FD8;border-color:#0B3FD8}
+.expansion-direction .direction-node.final b{color:#FFFFFF}
+.expansion-direction .direction-node.final span{color:#DCE7FF}
+.expansion-direction .arrow{font-size:17px;font-weight:700;color:#0B3FD8}
 
 /* cta */
 .cta-band{background:var(--dark);border-radius:28px;padding:60px 48px;color:#fff;text-align:center}
@@ -320,7 +330,13 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
   .project-metrics{gap:9px}
   .project-metric{padding:16px}
   .project-metric .value{font-size:30px}
-  .stage-row{grid-template-columns:1fr}
+  .commercial-roadmap h2{font-size:36px}
+  .roadmap-lead{font-size:16px;margin-top:18px}
+  .roadmap-grid{gap:9px;margin-top:18px}
+  .roadmap-card{padding:16px 15px}
+  .roadmap-card h3{font-size:17px}
+  .roadmap-card li{font-size:13.5px}
+  .expansion-direction{padding:10px}
   .cta-band{padding:44px 24px}
 }
 @media(max-width:700px){
@@ -360,6 +376,17 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
   .project-metric .label{font-size:12.5px;margin-top:4px}
   .project-metric .note{font-size:11px;margin-top:2px}
   .project-flow{display:none}
+  .commercial-roadmap{padding:44px 0 0}
+  .commercial-roadmap h2{font-size:28px}
+  .roadmap-lead{font-size:14.5px;line-height:1.6}
+  .roadmap-grid{grid-template-columns:1fr;gap:7px;margin-top:12px}
+  .roadmap-card{padding:10px 13px}
+  .roadmap-card .stage-tag{font-size:13.5px}
+  .roadmap-card h3{font-size:16px;line-height:1.35;margin-top:4px}
+  .roadmap-card ul{margin-top:5px}
+  .roadmap-card li{font-size:12.5px;line-height:1.45;padding:2px 0 2px 12px}
+  .roadmap-card li::before{top:9px}
+  .expansion-direction{display:none}
   .responsibility-grid{grid-template-columns:1fr}
   .responsibility-card{min-height:0}
   .summary-foot{align-items:flex-start;flex-direction:column}
@@ -758,11 +785,11 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
               <rect x="120" y="45" width="260" height="12" rx="6" fill="#1E4A3B"/>
               <rect x="120" y="45" width="210" height="12" rx="6" fill="#CDEA6A"/>
               <text x="392" y="55" font-family="'Space Grotesk',sans-serif" font-size="9" fill="#CDEA6A">실증 중</text>
-              <!-- mexico -->
-              <text x="16" y="76" font-size="10" fill="#fff">멕시코 거점</text>
+              <!-- overseas expansion direction -->
+              <text x="16" y="76" font-size="10" fill="#fff">해외 생산거점</text>
               <rect x="120" y="67" width="260" height="12" rx="6" fill="#1E4A3B"/>
               <rect x="120" y="67" width="96" height="12" rx="6" fill="#5CC3B0"/>
-              <text x="392" y="77" font-family="'Space Grotesk',sans-serif" font-size="9" fill="#5CC3B0">확산 예정</text>
+              <text x="392" y="77" font-family="'Space Grotesk',sans-serif" font-size="9" fill="#5CC3B0">확산 목표</text>
             </g>
           </svg>
         </div>
@@ -944,53 +971,50 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
 </section>
 
 <!-- ═══════ ROADMAP ═══════ -->
-<section id="roadmap">
+<section id="roadmap" class="commercial-roadmap">
   <div class="wrap">
-    <div class="eyebrow">Commercialization</div>
-    <h2 style="font-size:clamp(24px,3.2vw,36px);font-weight:900;letter-spacing:-.02em;margin-bottom:22px">광주에서 검증하고, 세계로 확산합니다</h2>
-    <div class="stage-row">
-      <div class="stage now">
-        <span class="tag">NOW</span>
-        <div class="idx mono">STAGE 1</div>
-        <h3>Domestic Expert</h3>
-        <div class="when">2026 – 2027 · 실증</div>
-        <ul>
-          <li>광주 골든라인 AI 실증</li>
-          <li>기준선·개선효과 정량화</li>
-          <li>sEMSp1.0 검수·제품성 확보</li>
-        </ul>
-      </div>
-      <div class="stage">
-        <span class="tag">NEXT</span>
-        <div class="idx mono">STAGE 2</div>
-        <h3>Global Hub</h3>
-        <div class="when">과제 종료 직후</div>
-        <ul>
-          <li>멕시코 거점 교차 검증</li>
-          <li>글로벌 EMS 대상 구독 판매</li>
-          <li>공통 제조-AI 프레임워크 적용</li>
-        </ul>
-      </div>
-      <div class="stage">
-        <span class="tag">VISION</span>
-        <div class="idx mono">STAGE 3</div>
-        <h3>Standard Maker</h3>
-        <div class="when">~2031</div>
-        <ul>
-          <li>글로벌 제조-AI 표준 창출</li>
-          <li>참조 아키텍처 제시</li>
-          <li>생태계 리더십 확보</li>
-        </ul>
-      </div>
+    <div class="roadmap-head">
+      <div class="eyebrow">09 · 개발·실증 로드맵</div>
+      <h2>광주에서 검증해,<br>국내외 확산을 준비합니다.</h2>
+      <p class="roadmap-lead">권고형 Beta와 데이터 연계 기반 검증으로 시작해, 승인형 반자동 운영과 표준 커넥터를 고도화하고,<br class="wide-break">
+      Smart EMS Package 1.0의 제품화와 국내외 확산 준비로 이어갑니다.</p>
     </div>
-    <div class="flowline">
-      <span class="node">Shadow · 관찰형</span>
-      <span class="ar">→</span>
-      <span class="node">Approval · 승인형 반자동</span>
-      <span class="ar">→</span>
-      <span class="node hi">A/B 실증 · sEMSp1.0</span>
-      <span class="ar">→</span>
-      <span class="node">멕시코 · 글로벌 확산</span>
+
+    <div class="roadmap-grid">
+      <article class="roadmap-card current">
+        <div class="stage-tag">현재 · 1차년도 · 기반 구축</div>
+        <h3>권고형 Beta와<br>연계 기반을 검증합니다.</h3>
+        <ul>
+          <li>제품 구조·데이터 연계 기반 확정</li>
+          <li>AI 엔진 v1·표준 1차분 검증</li>
+          <li>Roll-out Kit v0.5 검증</li>
+        </ul>
+      </article>
+      <article class="roadmap-card">
+        <div class="stage-tag">2차년도 · 현장 고도화</div>
+        <h3>작업자 승인형 운영으로<br>고도화합니다.</h3>
+        <ul>
+          <li>승인형 반자동 운영 고도화</li>
+          <li>표준 커넥터 연동 범위 확장</li>
+          <li>현장 실증과 운영 절차 보완</li>
+        </ul>
+      </article>
+      <article class="roadmap-card final">
+        <div class="stage-tag">사업 종료 시점 · 제품화</div>
+        <h3>v1.0으로 완성하고<br>확산을 준비합니다.</h3>
+        <ul>
+          <li>Roll-out Kit v1.0 완성</li>
+          <li>Smart EMS Package 1.0 완성</li>
+          <li>국내 타 라인·해외 거점 확산 준비</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="expansion-direction" aria-label="확산 방향">
+      <span class="direction-label">확산 방향 · 계획</span>
+      <div class="direction-node"><b>광주 SMT 파일럿</b><span>개발·현장 실증</span></div><span class="arrow">→</span>
+      <div class="direction-node"><b>국내 타 라인</b><span>반복 도입 준비</span></div><span class="arrow">→</span>
+      <div class="direction-node final"><b>해외 생산거점</b><span>확산 목표</span></div>
     </div>
   </div>
 </section>
