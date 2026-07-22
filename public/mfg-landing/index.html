@@ -142,6 +142,21 @@ nav{position:sticky;top:0;z-index:50;background:rgba(244,246,241,.85);backdrop-f
 .mfg-ai-phase .phase-points span{font-size:11.5px;font-weight:700;color:#294057;border:1px solid #C8D5E3;border-radius:999px;background:#FFFFFF;padding:4px 9px}
 .mfg-ai-visual .screen{background:#10243A;border-radius:22px;padding:12px;box-shadow:0 22px 54px rgba(23,35,46,.18)}
 
+/* 05 · 국제표준 연동 Pack */
+#capabilities:has(.standard-integration){background:#F7F9FC;font-family:'Freesentation',sans-serif}
+.standard-integration{grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:38px;padding:0;border-top:0}
+.standard-copy .eyebrow{font-size:16px;line-height:1.5;letter-spacing:.16em;color:#0B3FD8;margin-bottom:16px}
+#capabilities .standard-copy h2{font-family:'S-Core Dream','Freesentation',sans-serif;font-size:clamp(34px,3.3vw,42px);font-weight:800;letter-spacing:-.035em;line-height:1.24;color:#17232E}
+.standard-copy .standard-lead{font-size:17px;line-height:1.72;color:#3A4956;font-weight:600;margin-top:22px;max-width:530px}
+.standard-copy .standard-status{display:inline-flex;align-items:center;margin-top:14px;font-size:13.5px;font-weight:600;color:#526170}
+.standard-copy .standard-status::before{content:"";width:7px;height:7px;border-radius:50%;background:#0B3FD8;margin-right:8px}
+.standard-phases{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+.standard-phase{border:1px solid #D4DFEB;border-radius:15px;background:#FFFFFF;padding:15px 16px}
+.standard-phase .phase-label{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:#0B3FD8}
+.standard-phase b{display:block;font-family:'S-Core Dream','Freesentation',sans-serif;font-size:15px;line-height:1.45;color:#17232E;margin-top:6px}
+.standard-phase p{font-size:12.5px;line-height:1.55;color:#62717E;margin-top:5px}
+.standard-visual .screen{background:#10243A;border-radius:22px;padding:12px;box-shadow:0 22px 54px rgba(23,35,46,.18)}
+
 /* 3개 추진 영역 요약 */
 .responsibility-summary{background:#F7F9FC;font-family:'Freesentation',sans-serif}
 .responsibility-summary .summary-head{max-width:880px;margin-bottom:34px}
@@ -227,6 +242,11 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
   .mfg-ai-phase{padding:16px}
   .mfg-ai-phase h3{font-size:18px}
   .mfg-ai-phase p{font-size:13.5px}
+  .standard-integration{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:22px}
+  #capabilities .standard-copy h2{font-size:34px}
+  .standard-copy .standard-lead{font-size:15.5px;margin-top:18px}
+  .standard-phases{grid-template-columns:1fr;gap:8px;margin-top:18px}
+  .standard-phase{padding:12px 14px}
   .responsibility-summary .summary-head{margin-bottom:26px}
   .responsibility-summary h2{font-size:36px}
   .responsibility-summary .summary-lead{font-size:16.5px;margin-top:18px}
@@ -253,6 +273,8 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
   .transition-core{align-items:stretch;flex-direction:column;text-align:center}
   .transition-core b{transform:rotate(90deg)}
   .mfg-ai-detail{grid-template-columns:1fr}
+  .standard-integration{grid-template-columns:1fr}
+  #capabilities:has(.standard-integration){padding:44px 0}
   .responsibility-grid{grid-template-columns:1fr}
   .responsibility-card{min-height:0}
   .summary-foot{align-items:flex-start;flex-direction:column}
@@ -479,34 +501,63 @@ footer{padding:34px 0 44px;font-size:12px;color:var(--muted)}
       </div>
     </div>
 
-    <!-- 02 reflow AI closed loop -->
-    <div class="feature flip">
-      <div class="f-text">
-        <div class="f-num mono">02 — REFLOW OPTIMIZATION AI</div>
-        <h3>열공정을, 감이 아닌 폐루프로</h3>
-        <p>Tombstone·Void·Bridge 같은 불량은 대부분 리플로우 열 조건에서 비롯됩니다.
-        AI가 데이터를 <b>수집→예측→권고</b>하고, 작업자 <b>승인→제어→검증</b>으로 닫히는
-        폐루프(Closed-loop)로 조건을 실시간 보정합니다.</p>
-        <div class="f-tags"><span class="f-tag">Thermal Profile</span><span class="f-tag">승인형 반자동</span></div>
+    <!-- 05 국제표준 연동 Pack -->
+    <div class="feature standard-integration">
+      <div class="standard-copy">
+        <div class="eyebrow">05 · GLOBAL STANDARD INTEGRATION</div>
+        <h2>서로 다른 데이터를,<br>표준으로 연결합니다.</h2>
+        <p class="standard-lead">장비·생산·검사 시스템마다 다른 데이터 형식과 의미를 AAS·OPC-UA 기반으로 정리해,<br class="wide-break">
+        AI와 운영 시스템이 같은 기준으로 활용할 수 있는 연결 기반을 구축합니다.</p>
+        <div class="standard-status">2026–2028 · 표준 데이터 모델 및 커넥터 개발 추진 중</div>
+        <div class="standard-phases">
+          <article class="standard-phase">
+            <div class="phase-label">1차년도 · 표준 1차분</div>
+            <b>공통 데이터 구조를 정의합니다.</b>
+            <p>설비·생산·검사 데이터의 구조와 연동 인터페이스를 검증합니다.</p>
+          </article>
+          <article class="standard-phase">
+            <div class="phase-label">2차년도 · 커넥터 확장</div>
+            <b>라인과 거점 간 연결 범위를 넓힙니다.</b>
+            <p>표준 커넥터를 확장해 반복 연동과 다거점 적용 기반을 강화합니다.</p>
+          </article>
+        </div>
       </div>
-      <div class="f-media">
+
+      <div class="f-media standard-visual">
         <div class="screen">
-          <svg viewBox="0 0 560 250" xmlns="http://www.w3.org/2000/svg" aria-label="리플로우 최적화 AI 폐루프: 수집, 예측, 권고, 승인, 제어, 검증">
-            <rect width="560" height="250" rx="14" fill="#0F2A22"/>
-            <text x="22" y="34" font-family="'Space Grotesk',sans-serif" font-size="13" font-weight="700" fill="#fff">Closed-loop Optimization</text>
-            <!-- loop ring -->
-            <ellipse cx="280" cy="140" rx="180" ry="78" fill="none" stroke="#1E4A3B" stroke-width="2"/>
-            <path d="M280 62 A180 78 0 0 1 452 118" fill="none" stroke="#CDEA6A" stroke-width="2.5" stroke-linecap="round"/>
-            <g font-family="'Noto Sans KR',sans-serif" font-weight="900" font-size="10">
-              <g><circle cx="280" cy="62" r="24" fill="#CDEA6A"/><text x="280" y="66" text-anchor="middle" fill="#0F2A22">수집</text></g>
-              <g><circle cx="420" cy="102" r="24" fill="#123B2E" stroke="#5CC3B0" stroke-width="2"/><text x="420" y="106" text-anchor="middle" fill="#fff">예측</text></g>
-              <g><circle cx="420" cy="178" r="24" fill="#123B2E" stroke="#5CC3B0" stroke-width="2"/><text x="420" y="182" text-anchor="middle" fill="#fff">권고</text></g>
-              <g><circle cx="280" cy="218" r="24" fill="#2E9E68"/><text x="280" y="222" text-anchor="middle" fill="#fff">승인</text></g>
-              <g><circle cx="140" cy="178" r="24" fill="#123B2E" stroke="#5CC3B0" stroke-width="2"/><text x="140" y="182" text-anchor="middle" fill="#fff">제어</text></g>
-              <g><circle cx="140" cy="102" r="24" fill="#123B2E" stroke="#5CC3B0" stroke-width="2"/><text x="140" y="106" text-anchor="middle" fill="#fff">검증</text></g>
+          <svg viewBox="0 0 620 350" xmlns="http://www.w3.org/2000/svg" aria-label="설비·생산·검사 데이터를 AAS와 OPC-UA 기반 공통 구조로 연결해 AI와 운영 시스템이 활용하는 표준 연동 흐름">
+            <defs><linearGradient id="std-flow" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#00CFF0"/><stop offset="1" stop-color="#2E67F8"/></linearGradient></defs>
+            <rect width="620" height="350" rx="18" fill="#10243A"/>
+            <text x="28" y="36" font-family="'Freesentation',sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#8EA9C3">GLOBAL STANDARD INTEGRATION</text>
+            <text x="28" y="59" font-family="'S-Core Dream','Freesentation',sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">이기종 현장 데이터에서 공통 활용 구조까지</text>
+
+            <g font-family="'Freesentation',sans-serif">
+              <text x="28" y="91" font-size="10" font-weight="700" letter-spacing="1" fill="#8EA9C3">FIELD DATA</text>
+              <rect x="28" y="104" width="122" height="45" rx="10" fill="#203D59"/><text x="89" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">설비 데이터</text>
+              <rect x="28" y="161" width="122" height="45" rx="10" fill="#203D59"/><text x="89" y="189" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">생산 데이터</text>
+              <rect x="28" y="218" width="122" height="45" rx="10" fill="#203D59"/><text x="89" y="246" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">검사 데이터</text>
+
+              <path d="M150 184 H184" stroke="url(#std-flow)" stroke-width="3"/><path d="M176 178 L186 184 L176 190" fill="none" stroke="#2E67F8" stroke-width="3"/>
+
+              <rect x="188" y="88" width="244" height="194" rx="17" fill="#FFFFFF"/>
+              <text x="210" y="116" font-size="11" font-weight="700" fill="#0B3FD8">STANDARD CONNECTION LAYER</text>
+              <rect x="210" y="132" width="200" height="57" rx="11" fill="#EDF3FF"/>
+              <text x="226" y="154" font-size="12" font-weight="700" fill="#17232E">AAS · 공통 데이터 모델</text>
+              <text x="226" y="174" font-size="10" fill="#526170">자산·속성·의미를 같은 구조로 정리</text>
+              <rect x="210" y="201" width="200" height="57" rx="11" fill="#DDE9FF"/>
+              <text x="226" y="223" font-size="12" font-weight="700" fill="#0B3FD8">OPC-UA · 표준 연결</text>
+              <text x="226" y="243" font-size="10" fill="#526170">설비와 운영 시스템의 연동 기반</text>
+
+              <path d="M432 184 H466" stroke="url(#std-flow)" stroke-width="3"/><path d="M458 178 L468 184 L458 190" fill="none" stroke="#2E67F8" stroke-width="3"/>
+
+              <text x="480" y="91" font-size="10" font-weight="700" letter-spacing="1" fill="#8EA9C3">APPLICATION</text>
+              <rect x="470" y="104" width="122" height="45" rx="10" fill="#0B3FD8"/><text x="531" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">Manufacturing AI</text>
+              <rect x="470" y="161" width="122" height="45" rx="10" fill="#203D59"/><text x="531" y="189" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">운영 시스템</text>
+              <rect x="470" y="218" width="122" height="45" rx="10" fill="#203D59"/><text x="531" y="246" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">다거점 확산</text>
+
+              <rect x="28" y="302" width="564" height="25" rx="8" fill="#17314B" stroke="#2D4B67"/>
+              <text x="310" y="319" text-anchor="middle" font-size="10" font-weight="700" fill="#AFC3D7">설비별 개별 연동을 넘어 · 같은 기준으로 연결하고 활용하는 기반</text>
             </g>
-            <text x="280" y="136" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="900" fill="#CDEA6A">Reflow AI</text>
-            <text x="280" y="154" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="9" fill="#8FD3B4">작업자 승인 기반</text>
           </svg>
         </div>
       </div>
