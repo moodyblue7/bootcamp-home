@@ -54,7 +54,7 @@ type Stat = { display: string; label: string; note: string };
 export const stats: readonly Stat[] = [
   { display: "37.6억원", label: "R&D 수행 규모", note: "누적 주관·참여 과제 기준" },
   { display: "6건", label: "특허", note: "등록 1건 · 출원 5건" },
-  { display: "5편", label: "논문", note: "SCI 1편 · KCI 4편" },
+  { display: "6편", label: "논문", note: "SCI 1편 · KCI 4편 · 학술대회 1편" },
   { display: "1,000여명", label: "누적 인체 데이터", note: "IRB 승인 절차에 따라 4년간 직접 수집" },
   { display: "검증", label: "KTC 공인시험", note: "보행분석 AI 알고리즘" },
   { display: "2개소", label: "공공시설 실증", note: "서구체육회 · K-하이테크플랫폼" },

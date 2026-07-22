@@ -899,28 +899,76 @@ function AchievementsPanel({ section }: { section: string }) {
 
   if (section === "patents") {
     return (
-      <div className={WRAP}>
-        <Kicker />
-        <h2 className="mt-5 font-display text-big font-extrabold tracking-tight sm:text-huge">특허</h2>
-        <h3 className="mt-10 font-display text-mid font-extrabold">등록</h3>
-        <ul className="mt-4 space-y-4">
-          {patents.registered.map((p) => (
-            <li key={p.no} className="rounded-2xl border border-navy-100 p-6">
-              <p className="text-[0.9rem] font-bold text-brand-blue">{p.no}</p>
-              <p className="mt-2 text-small leading-relaxed">{p.title}</p>
-              <p className="mt-2 text-[0.9rem] text-navy-400">{p.date}</p>
-            </li>
+      <div className="mx-auto w-full max-w-content px-6 py-10 md:px-10 lg:pl-44 lg:pr-12">
+        <p className="flow-label">성과·인증 · 특허</p>
+        <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+          보행·근육건강·낙상예방 기술을,
+          {"\n"}
+          <span className="brand-gradient bg-clip-text text-transparent">특허 포트폴리오로 축적했습니다.</span>
+        </h2>
+        <p className="mt-3 max-w-[66rem] text-body-lead text-navy-600">
+          4년간의 연구개발 결과를 등록 1건·출원 5건의 지식재산 포트폴리오로 구축했습니다.
+        </p>
+
+        <div className="mt-3 flex max-w-[66rem] flex-wrap gap-2">
+          <span className="rounded-full bg-brand-blue px-3 py-1.5 text-[0.76rem] font-bold text-white">총 6건</span>
+          <span className="rounded-full bg-brand-blue/10 px-3 py-1.5 text-[0.76rem] font-bold text-brand-blue">
+            등록 1건 · 출원 5건
+          </span>
+          {(["보행분석", "근육건강", "낙상예방"] as const).map((field) => (
+            <span key={field} className="rounded-full border border-navy-100 bg-navy-50 px-3 py-1.5 text-[0.76rem] font-semibold text-navy-600">
+              {field}
+            </span>
           ))}
-        </ul>
-        <h3 className="mt-10 font-display text-mid font-extrabold">출원</h3>
-        <ul className="mt-4 divide-y divide-navy-100 border-y border-navy-100">
-          {patents.applied.map((p) => (
-            <li key={p.no} className="grid gap-1 py-4 sm:grid-cols-[1fr_9rem] sm:gap-6">
-              <p className="text-[0.95rem] leading-relaxed text-navy-600">{p.title}</p>
-              <p className="text-[0.9rem] text-navy-400 sm:text-right">{p.date}</p>
-            </li>
-          ))}
-        </ul>
+        </div>
+
+        <div className="mt-4 grid max-w-[66rem] gap-3 md:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)]">
+          <section className="rounded-[22px] bg-[#10243A] p-5 text-white shadow-[0_18px_42px_rgba(16,36,58,0.16)]">
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="font-display text-[1rem] font-extrabold">등록특허</h3>
+              <span className="rounded-full border border-brand-cyan/35 bg-brand-cyan/10 px-2.5 py-1 text-[0.68rem] font-bold text-brand-cyan">
+                등록 1건
+              </span>
+            </div>
+            {patents.registered.map((p) => (
+              <article key={p.no} className="mt-4">
+                <p className="text-[0.78rem] font-bold tracking-[0.04em] text-brand-cyan">{p.no}</p>
+                <p className="mt-2.5 font-display text-[1.02rem] font-extrabold leading-[1.55] text-white">
+                  {p.title}
+                </p>
+                <p className="mt-4 border-t border-white/10 pt-3 text-[0.78rem] font-medium leading-relaxed text-white/55">
+                  출원번호 {p.appNo} · {p.date}
+                </p>
+              </article>
+            ))}
+          </section>
+
+          <section className="rounded-[22px] border border-navy-100 bg-navy-50 p-4 shadow-[0_12px_30px_rgba(23,35,46,0.05)]">
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="font-display text-[1rem] font-extrabold text-navy">출원특허</h3>
+              <span className="text-[0.72rem] font-bold text-brand-blue">출원 5건</span>
+            </div>
+            <ol className="mt-2 divide-y divide-navy-100">
+              {patents.applied.map((p, index) => (
+                <li key={p.no} className="grid grid-cols-[1.6rem_minmax(0,1fr)] gap-2.5 py-2">
+                  <span className="pt-0.5 text-[0.68rem] font-bold tracking-[0.08em] text-brand-blue">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p className="text-[0.76rem] font-semibold text-navy-400">
+                      {p.no} · {p.date}
+                    </p>
+                    <p className="mt-1 text-[0.88rem] font-semibold leading-[1.45] text-navy-700">{p.title}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </div>
+
+        <p className="mt-3 max-w-[66rem] text-[0.74rem] font-medium text-navy-400">
+          ※ 특허 명칭은 등록·출원 원문을 그대로 표기했습니다.
+        </p>
       </div>
     );
   }

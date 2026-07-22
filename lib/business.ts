@@ -23,7 +23,7 @@ export const healthcarePipeline: Pipeline = {
   ],
   footer: {
     label: "증거",
-    items: ["KTC 공인시험 검증", "통합 데이터 273건", "보건복지부 IRB", "논문 5편", "특허 6건"],
+    items: ["KTC 공인시험 검증", "통합 데이터 273건", "보건복지부 IRB", "논문 6편", "특허 6건"],
   },
 };
 

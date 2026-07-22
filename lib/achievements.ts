@@ -47,6 +47,17 @@ export const papers = [
     doi: "10.1109/JIOT.2025.3636271",
   },
   {
+    title: "Skeletal Muscle Ratio Estimation from Gait Signals using a Compact Universal Residual Architecture (CURA)",
+    titleKo: "컴팩트 범용 잔차 구조(CURA)를 이용한 보행 신호 기반 골격근 비율 추정",
+    authors: "Jae-Bum Seo, Min-Seok Kim, Lismer Andres Caceres-Najarro",
+    journal: "한국정보기술학회논문지",
+    year: "2026",
+    role: "공동연구",
+    grade: "KCI",
+    pages: "p. 239",
+    doi: "10.14801/jkiit.2026.24.6.239",
+  },
+  {
     title:
       "Multi-Position Smartphone Sensor-based Elderly Gait Analysis and Low-Latency Fall Detection Bi-LSTM Model Development",
     journal: "한국정보기술학회논문지",
