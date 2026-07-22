@@ -783,62 +783,64 @@ function TechPanel({ section }: { section: string }) {
 
   if (section === "arch") {
     return (
-      <div className={TECH_WRAP}>
-        <h2 className="font-display text-big font-extrabold tracking-tight sm:text-huge">
-          모델과 아키텍처
+      <div className="mx-auto w-full max-w-content px-6 py-12 md:px-10 md:py-16 lg:pl-44 lg:pr-12">
+        <p className="flow-label">05 · 현장 적용 아키텍처</p>
+        <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+          {tech.architecture.flowTitle[0]}
+          {"\n"}
+          <span className="brand-gradient bg-clip-text text-transparent">{tech.architecture.flowTitle[1]}</span>
         </h2>
+        <p className="mt-4 max-w-[66rem] text-body-lead text-navy-600">{tech.architecture.lead}</p>
 
-        {/* 모델 */}
-        <h3 className="mt-10 font-display text-mid font-extrabold">{tech.models.title}</h3>
-        <p className="mt-2 text-small text-navy-600">{tech.models.body}</p>
-        <dl className="mt-5 max-w-3xl divide-y divide-navy-100 border-y border-navy-100">
-          {tech.models.rows.map((r) => (
-            <div key={r.k} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
-              <dt className="text-small font-semibold">{r.k}</dt>
-              <dd className="text-[0.95rem] leading-relaxed text-navy-600">{r.v}</dd>
-            </div>
-          ))}
-        </dl>
+        <div className="mt-6 max-w-[66rem] rounded-[22px] bg-[#10243A] p-4 shadow-[0_20px_48px_rgba(16,36,58,0.16)] md:p-5">
+          <p className="text-[0.72rem] font-bold tracking-[0.1em] text-brand-cyan">현장 적용 구조</p>
+          <ol className="mt-3 grid gap-2 md:grid-cols-4">
+            {tech.architecture.layers.map((layer, index) => (
+              <li
+                key={layer.n}
+                className={`relative rounded-xl border p-3.5 ${
+                  index === 2
+                    ? "border-brand-cyan/50 bg-brand-blue text-white"
+                    : "border-white/10 bg-[#17314B] text-white"
+                }`}
+              >
+                <span className={`text-[0.7rem] font-bold ${index === 2 ? "text-[#A8F2FF]" : "text-brand-cyan"}`}>
+                  {layer.n}
+                </span>
+                <h3 className="mt-1 font-display text-[1rem] font-extrabold leading-snug">{layer.name}</h3>
+                <p className={`mt-1.5 text-[0.88rem] font-medium leading-[1.5] md:text-[0.9rem] ${index === 2 ? "text-white/85" : "text-white/65"}`}>
+                  {layer.body}
+                </p>
+                {index < tech.architecture.layers.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute -right-[0.7rem] top-1/2 z-10 hidden -translate-y-1/2 text-base font-bold text-brand-cyan md:block"
+                  >
+                    →
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
 
-        {/* 엣지 4계층 */}
-        <h3 className="mt-12 font-display text-mid font-extrabold">{tech.edge.title}</h3>
-        <p className="mt-2 text-small text-navy-600">{tech.edge.lead}</p>
-        <ol className="mt-5 space-y-2.5">
-          {tech.edge.layers.map((l) => (
-            <li
-              key={l.n}
-              className="flex flex-col gap-1 rounded-xl border border-navy-100 p-5 sm:flex-row sm:items-baseline sm:gap-6"
-            >
-              <span className="text-[0.85rem] font-bold text-navy-400 sm:w-8">{l.n}</span>
-              <h4 className="text-small font-bold sm:w-52">{l.name}</h4>
-              <p className="text-[0.95rem] leading-relaxed text-navy-600">{l.body}</p>
-            </li>
+        <div className="mt-3 grid max-w-[66rem] gap-2 md:grid-cols-3">
+          {tech.architecture.principles.map((principle) => (
+            <article key={principle.name} className="rounded-xl border border-navy-100 bg-navy-50 px-4 py-3.5">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="font-display text-[0.98rem] font-extrabold text-navy">{principle.name}</h3>
+                {"status" in principle && principle.status && (
+                  <span className="rounded-full bg-brand-blue/10 px-2 py-1 text-[0.65rem] font-bold text-brand-blue">
+                    {principle.status}
+                  </span>
+                )}
+              </div>
+              <p className="mt-1.5 text-[0.88rem] font-medium leading-[1.5] text-navy-600 md:text-[0.9rem]">
+                {principle.body}
+              </p>
+            </article>
           ))}
-        </ol>
-
-        {/* 표준 */}
-        <h3 className="mt-12 font-display text-mid font-extrabold">{tech.standards.title}</h3>
-        <dl className="mt-5 max-w-3xl divide-y divide-navy-100 border-y border-navy-100">
-          {tech.standards.rows.map((r) => (
-            <div key={r.k} className="grid gap-1 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
-              <dt className="text-small font-semibold">{r.k}</dt>
-              <dd className="text-[0.95rem] leading-relaxed text-navy-600">{r.v}</dd>
-            </div>
-          ))}
-        </dl>
-
-        {/* 보안 */}
-        <h3 className="mt-12 font-display text-mid font-extrabold">{tech.security.title}</h3>
-        <ul className="mt-5 flex flex-wrap gap-2.5">
-          {tech.security.items.map((i) => (
-            <li
-              key={i}
-              className="rounded-full border border-navy-200 px-4 py-1.5 text-[0.95rem] font-medium text-navy-600"
-            >
-              {i}
-            </li>
-          ))}
-        </ul>
+        </div>
       </div>
     );
   }
