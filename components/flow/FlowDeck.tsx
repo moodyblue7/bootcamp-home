@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import Leadership from "@/components/about/Leadership";
@@ -892,11 +891,6 @@ function TechPanel({ section }: { section: string }) {
  *  타이포: 제목 = S-Core Dream(font-display), 본문 = Freesentation(font-sans). */
 /** 성과·인증 — 특허 / 논문·기술이전 / 인증·수행과제·언론 (데이터: lib/achievements) */
 function AchievementsPanel({ section }: { section: string }) {
-  const WRAP = "mx-auto w-full max-w-content px-6 py-24 lg:pl-44 lg:pr-12";
-  const Kicker = () => (
-    <p className="text-small font-bold uppercase tracking-[0.2em] text-brand-blue">성과·인증</p>
-  );
-
   if (section === "patents") {
     return (
       <div className="mx-auto w-full max-w-content px-6 py-10 md:px-10 lg:pl-44 lg:pr-12">
@@ -1092,173 +1086,305 @@ function AchievementsPanel({ section }: { section: string }) {
     );
   }
 
-  // certs: 인증 · 수행과제 · 언론
-  return (
-    <div className={WRAP}>
-      <Kicker />
-      <h2 className="mt-5 font-display text-big font-extrabold tracking-tight sm:text-huge">
-        인증 · 수행과제 · 언론
-      </h2>
+  if (section === "certs") {
+    const supportingEvidence = [
+      { kind: "연구 절차", item: certifications[3] },
+      { kind: "기술 보호", item: certifications[2] },
+      { kind: "제품 시험", item: certifications[1] },
+    ];
 
-      <h3 className="mt-10 font-display text-mid font-extrabold">인증</h3>
-      <dl className="mt-4 max-w-3xl divide-y divide-navy-100 border-y border-navy-100">
-        {certifications.map((c) => (
-          <div key={c.name} className="grid gap-1 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
-            <dt className="text-small font-semibold">{c.name}</dt>
-            <dd className="text-[0.95rem] leading-relaxed text-navy-600">
-              {c.body}
-              {c.org && <span className="text-navy-400"> · {c.org}</span>}
-              {c.date && <span className="text-navy-400"> · {c.date}</span>}
-            </dd>
+    return (
+      <div className="mx-auto w-full max-w-content px-6 py-14 md:px-10 md:py-10 lg:pl-44 lg:pr-12">
+        <p className="flow-label">성과·인증 · 시험·검증</p>
+        <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+          기술의 신뢰를,
+          {"\n"}
+          <span className="brand-gradient bg-clip-text text-transparent">문서와 절차로 남겼습니다.</span>
+        </h2>
+        <p className="mt-3 max-w-[66rem] text-body-lead text-navy-600">
+          공인시험으로 알고리즘 성능을 확인하고, 연구 승인과 기술임치로 데이터 수집과 기술 보호 절차를
+          갖췄습니다.
+        </p>
+
+        <section className="mt-5 max-w-[66rem] rounded-[22px] bg-[#10243A] p-5 text-white shadow-[0_18px_42px_rgba(16,36,58,0.16)]">
+          <div className="grid gap-5 md:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] md:items-center">
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-brand-cyan/35 bg-brand-cyan/10 px-2.5 py-1 text-[0.68rem] font-bold text-brand-cyan">
+                  공인시험
+                </span>
+                <span className="text-[0.7rem] font-bold text-white/45">기흥2024-00399</span>
+              </div>
+              <h3 className="mt-3 font-display text-[1.35rem] font-extrabold">KTC 시험성적서</h3>
+              <p className="mt-2 text-[0.88rem] font-medium leading-[1.55] text-white/65">
+                AIWALKER 보행분석 AI 알고리즘 · 한국기계전기전자시험연구원 · 2024.08
+              </p>
+            </div>
+            <dl className="grid grid-cols-3 gap-2.5">
+              {tech.gate.proof.stats.map((stat) => (
+                <div key={stat.k} className="rounded-xl border border-white/10 bg-white/5 px-3 py-3.5 text-center">
+                  <dd className="font-display text-[1.65rem] font-extrabold leading-none text-brand-cyan">{stat.v}</dd>
+                  <dt className="mt-2 text-[0.72rem] font-semibold leading-snug text-white/60">{stat.k}</dt>
+                </div>
+              ))}
+            </dl>
           </div>
-        ))}
-      </dl>
+        </section>
 
-      <h3 className="mt-10 font-display text-mid font-extrabold">주요 수행과제</h3>
-      <ul className="mt-4 divide-y divide-navy-100 border-y border-navy-100">
-        {projects.map((pr) => (
-          <li key={pr.year + pr.name} className="grid gap-1 py-4 sm:grid-cols-[5rem_1fr] sm:gap-6">
-            <span className="text-[0.9rem] font-bold text-navy-400">{pr.year}</span>
-            <span className="text-[0.95rem] leading-relaxed">
-              <b className="font-semibold">{pr.name}</b>
-              {pr.note && <span className="text-navy-400"> — {pr.note}</span>}
-            </span>
-          </li>
-        ))}
-      </ul>
+        <div className="mt-3 grid max-w-[66rem] gap-3 md:grid-cols-3">
+          {supportingEvidence.map(({ kind, item }) => (
+            <article key={item.name} className="rounded-2xl border border-navy-100 bg-navy-50 p-4 shadow-[0_10px_26px_rgba(23,35,46,0.04)]">
+              <span className="text-[0.68rem] font-bold tracking-[0.08em] text-brand-blue">{kind}</span>
+              <h3 className="mt-2 font-display text-[1rem] font-extrabold text-navy">{item.name}</h3>
+              <p className="mt-2 text-[0.86rem] font-medium leading-[1.5] text-navy-600">{item.body}</p>
+              {(item.org || item.date) && (
+                <p className="mt-2 text-[0.72rem] font-semibold text-navy-400">
+                  {[item.org, item.date].filter(Boolean).join(" · ")}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
-      <h3 className="mt-10 font-display text-mid font-extrabold">언론</h3>
-      <ul className="mt-4 space-y-3">
-        {press.map((a) => (
-          <li key={a.url}>
-            <a href={a.url} target="_blank" rel="noopener noreferrer" className="group block">
-              <span className="text-small font-semibold group-hover:text-brand-blue">{a.title}</span>
-              <span className="mt-1 block text-[0.9rem] text-navy-400">
-                {a.outlet} · {a.date}
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
+  // projects: 주요 수행과제 · 언론
+  return (
+    <div className="mx-auto w-full max-w-content px-6 py-14 md:px-10 md:py-12 lg:pl-44 lg:pr-12 xl:py-6">
+      <p className="flow-label">성과·인증 · 수행과제·언론</p>
+      <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+        연구개발을 현장에서 실행하고,
+        {"\n"}
+        <span className="brand-gradient bg-clip-text text-transparent">외부 기록으로 남겼습니다.</span>
+      </h2>
+      <p className="mt-3 max-w-[66rem] text-body-lead text-navy-600">
+        2022년부터 AI 헬스케어 연구·실증을 이어왔고, 현재 제조 AX의 개발·상용화 과제로 확장하고
+        있습니다.
+      </p>
+
+      <div className="mt-3 flex max-w-[66rem] flex-wrap gap-2">
+        <span className="rounded-full bg-brand-blue px-3 py-1.5 text-[0.74rem] font-bold text-white">
+          누적 R&amp;D 수행 규모 약 37.6억원
+        </span>
+        <span className="rounded-full border border-navy-100 bg-navy-50 px-3 py-1.5 text-[0.74rem] font-bold text-navy-600">
+          AI 헬스케어
+        </span>
+        <span className="rounded-full border border-navy-100 bg-navy-50 px-3 py-1.5 text-[0.74rem] font-bold text-navy-600">
+          제조 AX
+        </span>
+      </div>
+
+      <div className="mt-3 grid max-w-[66rem] gap-3 md:grid-cols-[minmax(0,1.18fr)_minmax(0,0.82fr)]">
+        <section className="rounded-[22px] border border-navy-100 bg-navy-50 p-3.5 shadow-[0_12px_30px_rgba(23,35,46,0.05)]">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="font-display text-[1rem] font-extrabold text-navy">주요 수행과제</h3>
+            <span className="text-[0.7rem] font-bold text-brand-blue">2022 — 2028</span>
+          </div>
+          <ol className="mt-2 divide-y divide-navy-100">
+            {projects.map((project) => (
+              <li key={project.year + project.name} className="grid grid-cols-[4.8rem_minmax(0,1fr)] gap-2.5 py-1.5">
+                <span className="pt-0.5 text-[0.68rem] font-bold text-brand-blue">{project.year}</span>
+                <div>
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <p className="text-[0.82rem] font-extrabold leading-[1.4] text-navy-700">{project.name}</p>
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-[0.62rem] font-bold ${
+                        project.track === "제조 AX"
+                          ? "bg-brand-blue text-white"
+                          : project.track === "AI 헬스케어"
+                            ? "bg-brand-cyan/12 text-[#087E91]"
+                            : "bg-navy-100 text-navy-500"
+                      }`}
+                    >
+                      {project.track}
+                    </span>
+                  </div>
+                  {project.note && <p className="mt-1 text-[0.7rem] font-medium text-navy-400">{project.note}</p>}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="rounded-[22px] bg-[#10243A] p-4 text-white shadow-[0_18px_42px_rgba(16,36,58,0.14)]">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="font-display text-[1rem] font-extrabold">언론 기록</h3>
+            <span className="text-[0.7rem] font-bold text-brand-cyan">원문 링크</span>
+          </div>
+          <ul className="mt-2 divide-y divide-white/10">
+            {press.map((article) => (
+              <li key={article.url} className="py-3">
+                <a href={article.url} target="_blank" rel="noopener noreferrer" className="group block">
+                  <p className="text-[0.7rem] font-bold text-brand-cyan">
+                    {article.outlet} · {article.date}
+                  </p>
+                  <p className="mt-1.5 text-[0.84rem] font-bold leading-[1.45] text-white group-hover:text-brand-cyan">
+                    {article.title}
+                  </p>
+                  <p className="mt-1 text-[0.68rem] font-medium text-white/45">{article.note} ↗</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
     </div>
   );
 }
 
-/** 채용 — 인재상 + 상시지원 + 관심분야 + 지원 이메일 */
+/** 채용 — 일하는 방식 + 관심 분야 + 상시 인재 제안 */
 function CareersPanel() {
-  const interests = ["센서 데이터", "머신러닝", "엣지 디바이스", "데이터 파이프라인", "현장 운영"];
+  const values = [
+    {
+      no: "01",
+      title: "현장을 이해하는 개발",
+      body: "사용자와 생산현장의 운영 조건을 이해하고 기술 선택에 반영합니다.",
+    },
+    {
+      no: "02",
+      title: "데이터에 대한 책임",
+      body: "좋은 모델 이전에 신뢰할 수 있는 데이터와 검증 절차를 중요하게 생각합니다.",
+    },
+    {
+      no: "03",
+      title: "끝까지 이어가는 실행",
+      body: "기획·개발·시험·실증 사이에서 생기는 문제를 자기 일처럼 해결합니다.",
+    },
+  ];
+  const interests = ["센서 데이터", "AI·머신러닝", "웹·앱 서비스", "엣지·설비 연동", "현장 실증"];
+
   return (
-    <div className="mx-auto w-full max-w-content px-6 py-24 lg:pl-44 lg:pr-12">
-      <p className="text-small font-bold uppercase tracking-[0.2em] text-brand-blue">Careers</p>
-      <h2 className="mt-5 font-display text-big font-extrabold leading-[1.25] tracking-tight sm:text-huge">
-        현장까지 따라가는 사람을 찾습니다.
+    <div className="mx-auto w-full max-w-content px-6 py-14 md:px-10 md:py-12 lg:pl-44 lg:pr-12 xl:py-8">
+      <p className="flow-label">채용 · 함께할 사람</p>
+      <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+        기술을 만들고,
+        {"\n"}
+        <span className="brand-gradient bg-clip-text text-transparent">현장에서 작동할 때까지 함께합니다.</span>
       </h2>
-      <p className="mt-8 max-w-2xl text-mid leading-relaxed text-navy-600">
-        부트캠프의 일은 모델을 만드는 데서 끝나지 않습니다. 어르신이 실제로 걷는 체육관에 장비를
-        설치하고, 데이터 품질을 확인하고, 안 되면 다시 고칩니다. 그 과정을 지루해하지 않는 분과
-        함께하고 싶습니다.
+      <p className="mt-3 max-w-[66rem] text-body-lead text-navy-600">
+        부트캠프는 센서 데이터 수집부터 AI 모델 설계, 서비스 개발과 현장 실증까지 하나의 흐름으로
+        연결합니다. 역할의 경계를 넘어 문제를 끝까지 해결하고 싶은 동료와 함께하고자 합니다.
       </p>
 
-      <h3 className="mt-12 font-display text-mid font-extrabold">상시 지원</h3>
-      <p className="mt-3 max-w-2xl text-small leading-relaxed text-navy-600">
-        정해진 공고 없이 상시로 지원을 받습니다. 아래 어느 쪽이든 관심 있는 분이라면 편하게 연락
-        주세요.
-      </p>
-      <ul className="mt-6 flex flex-wrap gap-2.5">
-        {interests.map((i) => (
-          <li
-            key={i}
-            className="rounded-full border border-navy-200 px-4 py-1.5 text-[0.95rem] font-medium text-navy-600"
+      <div className="mt-5 grid max-w-[66rem] gap-3 md:grid-cols-3">
+        {values.map((value) => (
+          <article
+            key={value.no}
+            className="rounded-[22px] border border-navy-100 bg-white p-5 shadow-[0_12px_30px_rgba(23,35,46,0.06)]"
           >
-            {i}
-          </li>
+            <span className="text-[0.72rem] font-extrabold tracking-[0.12em] text-brand-blue">{value.no}</span>
+            <h3 className="mt-2 font-display text-[1.05rem] font-extrabold text-navy">{value.title}</h3>
+            <p className="mt-2 text-[0.82rem] font-medium leading-[1.6] text-navy-500">{value.body}</p>
+          </article>
         ))}
-      </ul>
+      </div>
 
-      <div className="mt-12 max-w-2xl rounded-2xl border border-navy-100 bg-navy-50 p-8">
-        <p className="text-small leading-relaxed text-navy-600">
-          자유 형식 이력서를 아래 주소로 보내주세요. 검토 후 개별적으로 연락드립니다.
-        </p>
+      <div className="mt-4 grid max-w-[66rem] gap-4 rounded-[22px] bg-[#10243A] p-5 text-white md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:p-6">
+        <div>
+          <p className="font-display text-[1.05rem] font-extrabold">상시 인재 제안</p>
+          <p className="mt-2 max-w-[43rem] text-[0.82rem] font-medium leading-[1.6] text-white/65">
+            정해진 채용공고가 없더라도 부트캠프의 기술과 사업 방향에 관심 있는 분의 제안을 열어두고
+            있습니다. 자유 형식의 이력서나 포트폴리오를 보내주세요.
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-1.5">
+            {interests.map((interest) => (
+              <li
+                key={interest}
+                className="rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1 text-[0.68rem] font-bold text-white/75"
+              >
+                {interest}
+              </li>
+            ))}
+          </ul>
+        </div>
         <a
-          href={`mailto:${company.email}?subject=${encodeURIComponent("[지원] 부트캠프 상시 지원")}`}
-          className="mt-5 inline-flex items-center gap-2 rounded-full bg-navy px-6 py-3 text-small font-semibold text-white transition-colors hover:bg-navy-900"
+          href={`mailto:${company.email}?subject=${encodeURIComponent("[인재 제안] 부트캠프 지원")}`}
+          className="inline-flex min-h-11 items-center justify-center rounded-full bg-brand-cyan px-5 py-3 text-[0.78rem] font-extrabold text-navy transition-transform hover:-translate-y-0.5"
         >
-          {company.email}
+          이력서·포트폴리오 보내기
         </a>
       </div>
     </div>
   );
 }
 
-// 회사정보 화면의 바로가기 메뉴. 모두 flow 내부 화면으로 해시(#) 연결한다.
-// (해시 링크는 상단 컨테이너 onClick 이 가로채 해당 대주제로 이동시킨다)
-const flowNav = [
-  { href: "#", label: "회사소개" }, // 첫 화면(상단)
-  { href: "#healthcare", label: "AI 헬스케어" },
-  { href: "#manufacturing", label: "제조 AX" },
-  { href: "#technology", label: "기술" },
-  { href: "#achievements", label: "성과·인증" },
-  { href: "#careers", label: "채용" },
-  { href: "#contact", label: "문의" },
-];
-
 function CompanyPanel({ title, kicker }: { title: string; kicker?: string }) {
+  const inquiryTypes = [
+    { title: "AI 헬스케어 도입·실증", body: "체육·복지시설, 지자체와 실증기관" },
+    { title: "제조 AX 협력", body: "제조기업, 설비·솔루션 기업과 컨소시엄" },
+    { title: "공동연구·R&D 협력", body: "대학, 연구기관, 공인시험기관과 공동과제" },
+  ];
+
   return (
-    <div className="mx-auto w-full max-w-content px-6 py-24 lg:pl-44 lg:pr-12">
+    <div className="mx-auto w-full max-w-content px-6 py-14 md:px-10 md:py-12 lg:pl-44 lg:pr-12 xl:py-8">
       {kicker && (
-        <p className="text-small font-bold uppercase tracking-[0.2em] text-brand-blue">{kicker}</p>
+        <p className="flow-label">{kicker}</p>
       )}
-      <h2 className="mt-5 whitespace-pre-line font-display text-big font-extrabold leading-[1.25] tracking-tight sm:text-huge">
-        {title}
+      <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+        현장 적용과 확산을 위한
+        {"\n"}
+        <span className="brand-gradient bg-clip-text text-transparent">{title}</span>
       </h2>
+      <p className="mt-3 max-w-[66rem] text-body-lead text-navy-600">
+        AI 헬스케어 실증, 제조 AX 도입, 공동연구와 과제 컨소시엄 등 협력 목적에 맞춰 필요한 범위부터
+        함께 검토합니다.
+      </p>
 
-      <div className="mt-12 flex flex-col gap-10 lg:flex-row lg:justify-between">
-        <div>
-          <img
-            src="/logo/bootcamp-logo-ko.svg"
-            alt="(주)부트캠프"
-            className="h-9 w-auto"
-          />
-          <dl className="mt-6 space-y-2 text-small text-navy-600">
-            <div>
-              <dt className="sr-only">주소</dt>
-              <dd>{company.address}</dd>
-            </div>
-            <div className="flex flex-wrap gap-x-4 gap-y-1">
-              <dt className="sr-only">전화</dt>
-              <dd>
-                <a href={`tel:${company.tel}`} className="hover:text-navy">
-                  {company.tel}
-                </a>
-              </dd>
-              <dt className="sr-only">이메일</dt>
-              <dd>
-                <a href={`mailto:${company.email}`} className="hover:text-navy">
-                  {company.email}
-                </a>
-              </dd>
-            </div>
-            <div className="flex gap-2 pt-1 text-[0.95rem] text-navy-400">
-              <dt>사업자등록번호</dt>
-              <dd>{company.bizNo}</dd>
-            </div>
-          </dl>
-        </div>
-
-        <nav aria-label="바로가기">
-          <ul className="grid grid-cols-2 gap-x-10 gap-y-2.5 text-small">
-            {flowNav.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="text-navy-400 hover:text-navy">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <div className="mt-5 grid max-w-[66rem] gap-3 md:grid-cols-3">
+        {inquiryTypes.map((item, index) => (
+          <article key={item.title} className="rounded-[20px] border border-navy-100 bg-navy-50 p-4.5">
+            <span className="text-[0.68rem] font-extrabold tracking-[0.12em] text-brand-blue">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3 className="mt-2 font-display text-[0.98rem] font-extrabold text-navy">{item.title}</h3>
+            <p className="mt-1.5 text-[0.76rem] font-medium leading-[1.55] text-navy-500">{item.body}</p>
+          </article>
+        ))}
       </div>
 
-      <p className="mt-12 border-t border-navy-100 pt-6 text-[0.95rem] text-navy-400">
+      <div className="mt-4 grid max-w-[66rem] gap-3 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <section className="rounded-[22px] bg-[#10243A] p-5 text-white shadow-[0_18px_42px_rgba(16,36,58,0.14)]">
+          <p className="text-[0.7rem] font-extrabold tracking-[0.12em] text-brand-cyan">COOPERATION</p>
+          <h3 className="mt-2 font-display text-[1.05rem] font-extrabold">협력 문의</h3>
+          <p className="mt-2 text-[0.8rem] font-medium leading-[1.6] text-white/65">
+            사업·실증·공동연구 목적과 검토 중인 현장을 간단히 알려주시면 담당자가 확인 후 연락드립니다.
+          </p>
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <a
+              href={`mailto:${company.email}?subject=${encodeURIComponent("[협력 문의] 부트캠프")}`}
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-brand-cyan px-5 py-3 text-[0.78rem] font-extrabold text-navy transition-transform hover:-translate-y-0.5"
+            >
+              협력 문의하기
+            </a>
+            <a href={`tel:${company.tel}`} className="text-[0.78rem] font-bold text-white/70 hover:text-white">
+              {company.tel}
+            </a>
+          </div>
+        </section>
+
+        <section className="rounded-[22px] border border-navy-100 bg-white p-5 shadow-[0_12px_30px_rgba(23,35,46,0.05)]">
+          <img src="/logo/bootcamp-logo-ko.svg" alt="(주)부트캠프" className="h-7 w-auto" />
+          <dl className="mt-4 grid grid-cols-[5.5rem_minmax(0,1fr)] gap-x-3 gap-y-2 text-[0.76rem] leading-[1.5]">
+            <dt className="font-bold text-navy-400">회사명</dt>
+            <dd className="font-semibold text-navy-700">{company.nameKo}</dd>
+            <dt className="font-bold text-navy-400">대표이사</dt>
+            <dd className="font-semibold text-navy-700">{company.ceo}</dd>
+            <dt className="font-bold text-navy-400">주소</dt>
+            <dd className="font-semibold text-navy-700">{company.address}</dd>
+            <dt className="font-bold text-navy-400">이메일</dt>
+            <dd>
+              <a href={`mailto:${company.email}`} className="font-semibold text-brand-blue hover:underline">
+                {company.email}
+              </a>
+            </dd>
+            <dt className="font-bold text-navy-400">사업자등록번호</dt>
+            <dd className="font-semibold text-navy-700">{company.bizNo}</dd>
+          </dl>
+        </section>
+      </div>
+
+      <p className="mt-4 max-w-[66rem] border-t border-navy-100 pt-3 text-[0.68rem] text-navy-400">
         © {new Date().getFullYear()} {company.nameKo}. All rights reserved.
       </p>
     </div>

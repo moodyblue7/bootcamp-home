@@ -129,27 +129,35 @@ export const techTransfer = [
 //  3) 카운터는 과제 "건수"를 쓰지 않고 누적 R&D 수행 규모 "약 37.6억 원"만 표기한다(사용자 지시 2026-07-22).
 //     근거: 기존 1,638,188천원에서 신속상용화 부트캠프 수행분 476,660천원을 제외하고
 //     24개월 컨소시엄 전체 과제비 2,595,000천원을 반영한 3,756,528천원. 목록은 "주요"로 한정한다.
-type Project = { year: string; name: string; note?: string };
+type Project = {
+  year: string;
+  name: string;
+  track: "기술개발 기반" | "AI 헬스케어" | "제조 AX";
+  note?: string;
+};
 
 export const projects: readonly Project[] = [
-  { year: "2022", name: "예비창업패키지", note: "EMS 모듈 개발" },
-  { year: "2023", name: "창업성장기술개발 디딤돌", note: "AI 헬스케어 · GIST 협력 · 1.3억 원" },
-  { year: "2024", name: "초기창업패키지", note: "AI 헬스케어 · 순천대학교 주관 · 1.2억 원" },
+  { year: "2022", name: "예비창업패키지", track: "기술개발 기반", note: "EMS 모듈 개발" },
+  { year: "2023", name: "창업성장기술개발 디딤돌", track: "AI 헬스케어", note: "GIST 협력" },
+  { year: "2024", name: "초기창업패키지", track: "AI 헬스케어", note: "순천대학교 주관" },
   {
     year: "2024",
     name: "산학연 Collabo R&D",
-    note: "AI 헬스케어 · 3.16억 원 · 파크골프장 현장 데이터 수집 완료",
+    track: "AI 헬스케어",
+    note: "파크골프장 현장 데이터 수집 완료",
   },
-  { year: "2026", name: "창업도약패키지", note: "AI 헬스케어 · 수행 중" },
+  { year: "2026", name: "창업도약패키지", track: "AI 헬스케어", note: "수행 중" },
   {
     year: "2026",
     name: "광주테크노파크 창업기업 제품실증지원사업",
-    note: "AI 헬스케어 실증 · 수행 중",
+    track: "AI 헬스케어",
+    note: "현장 실증 · 수행 중",
   },
   {
-    year: "2026",
+    year: "2026—2028",
     name: "중소벤처기업부 신속상용화 기술개발",
-    note: "제조 AX · Roll-out Kit SW 개발 주도 · 2026.06 ~ 2028.06",
+    track: "제조 AX",
+    note: "Roll-out Kit SW 개발 주도 · 수행 중",
   },
 ];
 

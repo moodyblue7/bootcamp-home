@@ -35,7 +35,7 @@ export type FlowPanel = {
     | "ach"
     | "careers";
   techKey?: "intro" | "bridge" | "pipeline" | "gate" | "arch" | "research";
-  achKey?: "patents" | "papers" | "certs"; // variant "ach"
+  achKey?: "patents" | "papers" | "certs" | "projects"; // variant "ach"
   html?: string; // variant "hc" / "mfg" 일 때 섹션 마크업
   kicker?: string;
   title: string;
@@ -96,11 +96,12 @@ export const flowRows: FlowRow[] = [
   {
     id: "achievements",
     label: "성과·인증",
-    // 특허 → 논문·기술이전 → 인증·수행과제·언론. 데이터는 lib/achievements.
+    // 특허 → 논문·기술이전 → 시험·검증 → 수행과제·언론. 데이터는 lib/achievements.
     panels: [
       { variant: "ach", achKey: "patents", title: "" },
       { variant: "ach", achKey: "papers", title: "" },
       { variant: "ach", achKey: "certs", title: "" },
+      { variant: "ach", achKey: "projects", title: "" },
     ],
   },
   {
@@ -115,8 +116,8 @@ export const flowRows: FlowRow[] = [
     panels: [
       {
         variant: "contact",
-        kicker: "Contact",
-        title: "함께 검증해볼\n현장을 찾습니다.",
+        kicker: "회사정보 · 문의",
+        title: "협력을 시작합니다.",
       },
     ],
   },
