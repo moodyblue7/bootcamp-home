@@ -28,12 +28,15 @@ export default function FlowDeck() {
   const rowRefs = useRef<(HTMLElement | null)[]>([]); // <section> = HTMLElement
   const [activeRow, setActiveRow] = useState(0);
   const [activeCols, setActiveCols] = useState<number[]>(() => flowRows.map(() => 0));
-  // 터치 기기(모바일) 감지. 서브화면 세로 잠금은 데스크톱(마우스 휠)에서만 적용하고,
-  // 모바일에서는 세로 스크롤이 항상 동작하게 둔다 — 중첩 스크롤과 잠금이 터치와 충돌해
-  // 스크롤이 끊기던 문제를 없앤다.
-  const [isTouch, setIsTouch] = useState(false);
+  // 모바일에서는 각 패널의 내부 스크롤을 없애고 바깥 컨테이너 하나만 세로로 스크롤한다.
+  // iOS WebKit에서 중첩 overflow + mandatory snap이 제스처를 가로채는 문제를 피하기 위한 분기다.
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+    const media = window.matchMedia("(max-width: 1023px)");
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
   }, []);
 
   useEffect(() => {
@@ -49,7 +52,16 @@ export default function FlowDeck() {
   const onVScroll = useCallback(() => {
     const el = vScrollRef.current;
     if (!el) return;
-    const idx = Math.round(el.scrollTop / el.clientHeight);
+    // 데스크톱의 각 row는 정확히 한 화면 높이지만, 모바일은 콘텐츠 길이에 따라 달라진다.
+    // 모바일에서는 화면 상단에서 35% 지점에 걸린 row를 현재 대주제로 판단한다.
+    let idx = Math.round(el.scrollTop / el.clientHeight);
+    if (isMobile) {
+      const probe = el.scrollTop + el.clientHeight * 0.35;
+      idx = 0;
+      rowRefs.current.forEach((row, rowIdx) => {
+        if (row && row.offsetTop <= probe) idx = rowIdx;
+      });
+    }
     setActiveRow((prev) => {
       if (prev !== idx && flowRows[idx]) {
         const id = flowRows[idx].id;
@@ -57,7 +69,7 @@ export default function FlowDeck() {
       }
       return idx;
     });
-  }, []);
+  }, [isMobile]);
 
   // 가로 이동은 "스크롤"이 아니라 상태 + transform 으로 한다.
   //  → 가로 스크롤 컨테이너가 없어지므로, iOS(WebKit)에서 가로가 세로 스크롤을 잡아먹던
@@ -159,7 +171,7 @@ export default function FlowDeck() {
         // 텍스트를 드래그해 선택 중이면 이동하지 않는다
         if (window.getSelection()?.toString()) return;
         // 모바일(터치)은 세로 스크롤로만 이동한다 — 탭으로 가로 넘김은 데스크톱 전용
-        if (isTouch) return;
+        if (isMobile) return;
         cycleCol(activeRow);
       }}
     >
@@ -218,9 +230,15 @@ export default function FlowDeck() {
       <div
         ref={vScrollRef}
         onScroll={onVScroll}
-        className="h-full snap-y snap-mandatory overflow-y-auto overscroll-none"
+        className={`h-full overflow-y-auto ${
+          isMobile
+            ? "snap-y snap-proximity overscroll-y-auto"
+            : "snap-y snap-mandatory overscroll-none"
+        }`}
         style={
-          isTouch ? undefined : { overflowY: (activeCols[activeRow] ?? 0) > 0 ? "hidden" : "scroll" }
+          isMobile
+            ? { WebkitOverflowScrolling: "touch", touchAction: "pan-y pinch-zoom" }
+            : { overflowY: (activeCols[activeRow] ?? 0) > 0 ? "hidden" : "scroll" }
         }
       >
         {flowRows.map((row, ri) => {
@@ -232,14 +250,26 @@ export default function FlowDeck() {
               ref={(el) => {
                 rowRefs.current[ri] = el;
               }}
-              className="relative h-full snap-start overflow-hidden"
+              className={
+                isMobile
+                  ? "relative min-h-full min-h-[100dvh] snap-start overflow-visible"
+                  : "relative h-full snap-start overflow-hidden"
+              }
             >
               {/* 가로 트랙 — 스크롤 컨테이너가 아니라 transform 으로 이동한다.
                   각 패널이 폭 100% 이므로 col 당 -100% 씩 밀면 된다. */}
               <div
                 data-htrack
-                className="flex h-full transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${(activeCols[ri] ?? 0) * 100}%)` }}
+                className={
+                  isMobile
+                    ? "min-h-full w-full"
+                    : "flex h-full transition-transform duration-500 ease-out"
+                }
+                style={
+                  isMobile
+                    ? undefined
+                    : { transform: `translateX(-${(activeCols[ri] ?? 0) * 100}%)` }
+                }
               >
                 {row.panels.map((p, pi) => (
                   <article
@@ -247,9 +277,13 @@ export default function FlowDeck() {
                     // items-[safe_center]: 콘텐츠가 화면보다 크면 위쪽부터 정렬(스크롤로 접근),
                     //   작으면 세로 중앙. 그냥 items-center 면 긴 콘텐츠의 위가 잘린다.
                     // 세부가 여러 개인 대주제에서는 커서를 손 모양으로 = 넘길 수 있다는 힌트.
-                    className={`relative flex h-full w-full shrink-0 items-[safe_center] overflow-y-auto ${
-                      multi ? "lg:cursor-pointer" : ""
-                    }`}
+                    className={`relative w-full items-[safe_center] ${
+                      isMobile
+                        ? pi === (activeCols[ri] ?? 0)
+                          ? "flex min-h-full min-h-[100dvh] overflow-visible"
+                          : "hidden"
+                        : "flex h-full shrink-0 overflow-y-auto"
+                    } ${multi ? "lg:cursor-pointer" : ""}`}
                   >
                     {p.variant === "hc" ? (
                       // AIWalker 섹션을 직접 렌더. .hc 스코프 CSS 가 디자인을 격리한다.
