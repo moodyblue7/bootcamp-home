@@ -507,16 +507,106 @@ const TECH_WRAP = "mx-auto w-full max-w-content px-6 py-24 lg:pl-44 lg:pr-12";
 function TechPanel({ section }: { section: string }) {
   if (section === "intro") {
     return (
-      <div className={TECH_WRAP}>
-        <p className="text-small font-bold uppercase tracking-[0.2em] text-brand-blue">
-          {tech.eyebrow}
-        </p>
-        <h2 className="mt-5 whitespace-pre-line font-display text-big font-extrabold leading-[1.2] tracking-tight sm:text-huge">
+      <div className="mx-auto w-full max-w-content px-6 py-12 md:px-10 md:py-16 lg:pl-44 lg:pr-12">
+        <p className="flow-label">01 · 공통 AI 기술</p>
+        <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
           {tech.h1[0]}
           {"\n"}
-          <span className="brand-gradient bg-clip-text text-transparent">{tech.h1[1]}</span>
+          <span className="brand-gradient bg-clip-text text-transparent">
+            {tech.h1[1]}
+            {"\n"}
+            {tech.h1[2]}
+          </span>
         </h2>
-        <p className="mt-8 max-w-2xl text-mid leading-relaxed text-navy-600">{tech.lead}</p>
+        <p className="mt-5 max-w-4xl whitespace-pre-line text-body-lead text-navy-600">{tech.lead}</p>
+
+        <figure className="mt-7 max-w-[66rem] overflow-hidden rounded-[22px] bg-[#10243A] p-4 shadow-[0_22px_54px_rgba(23,35,46,0.18)] md:mt-8 md:p-5">
+          <div className="flex flex-wrap items-end justify-between gap-2 border-b border-white/10 pb-3">
+            <div>
+              <p className="text-[0.7rem] font-bold tracking-[0.14em] text-brand-cyan">
+                부트캠프 · 공통 AI 파이프라인
+              </p>
+              <h3 className="mt-1 font-display text-[1.05rem] font-extrabold text-white md:text-[1.15rem]">
+                현장 데이터를 신뢰 가능한 AI 신호로 전환
+              </h3>
+            </div>
+            <p className="hidden text-[0.72rem] font-semibold text-white/45 md:block">
+              SOURCES → COMMON CORE → FIELD OUTPUTS
+            </p>
+          </div>
+
+          <div className="mt-3 grid gap-2.5 md:grid-cols-[7rem_1rem_minmax(0,1fr)_1rem_7rem] md:items-stretch">
+            <div className="rounded-xl border border-white/10 bg-[#17314B] p-3">
+              <p className="text-[0.67rem] font-bold tracking-[0.1em] text-white/55">INPUT DATA</p>
+              <div className="mt-2 grid grid-cols-2 gap-1.5 md:grid-cols-1">
+                <div className="rounded-lg border border-brand-cyan/30 bg-brand-cyan/10 px-2 py-2 text-center text-[0.82rem] font-bold leading-snug text-[#8EEAF8]">
+                  {tech.introFlow.inputs[0]}
+                </div>
+                <div className="rounded-lg border border-[#6185FF]/30 bg-brand-blue/20 px-2 py-2 text-center text-[0.82rem] font-bold leading-snug text-[#B8C8FF]">
+                  {tech.introFlow.inputs[1]}
+                </div>
+              </div>
+            </div>
+
+            <span className="hidden items-center justify-center text-xl font-bold text-brand-cyan md:flex" aria-hidden="true">
+              →
+            </span>
+
+            <div className="rounded-xl border border-[#2C5479] bg-[#14304B] p-3">
+              <p className="text-[0.67rem] font-bold tracking-[0.1em] text-white/55">COMMON AI CORE</p>
+              <ol className="mt-2 grid grid-cols-2 gap-1.5 md:grid-cols-4">
+                {tech.introFlow.stages.map((stage, index) => {
+                  const emphasis = index === 1;
+                  return (
+                    <li
+                      key={stage}
+                      className={`flex min-h-[4.25rem] flex-col justify-center rounded-lg border px-2.5 py-2.5 ${
+                        emphasis
+                          ? "border-brand-cyan/60 bg-brand-blue text-white shadow-[0_8px_20px_rgba(11,63,216,0.3)]"
+                          : "border-white/10 bg-[#1B3D5B] text-white"
+                      }`}
+                    >
+                      <span className={`text-[0.68rem] font-bold ${emphasis ? "text-[#A8F2FF]" : "text-brand-cyan"}`}>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <strong className="mt-1 font-display text-[0.92rem] font-extrabold leading-snug md:text-[0.98rem]">
+                        {stage}
+                      </strong>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+
+            <span className="hidden items-center justify-center text-xl font-bold text-brand-cyan md:flex" aria-hidden="true">
+              →
+            </span>
+
+            <div className="rounded-xl border border-white/10 bg-[#17314B] p-3">
+              <p className="text-[0.67rem] font-bold tracking-[0.1em] text-white/55">FIELD OUTPUT</p>
+              <div className="mt-2 grid grid-cols-2 gap-1.5 md:grid-cols-1">
+                <div className="rounded-lg border border-brand-cyan/30 bg-brand-cyan/10 px-2 py-2 text-center text-[0.82rem] font-bold leading-snug text-[#8EEAF8]">
+                  {tech.introFlow.outputs[0]}
+                </div>
+                <div className="rounded-lg border border-[#6185FF]/30 bg-brand-blue/20 px-2 py-2 text-center text-[0.82rem] font-bold leading-snug text-[#B8C8FF]">
+                  {tech.introFlow.outputs[1]}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-3 flex items-center gap-2 rounded-lg bg-[#0B3FD8] px-3 py-2 text-[0.78rem] font-semibold leading-snug text-white md:text-[0.82rem]">
+            <span className="shrink-0 rounded-full bg-white px-2 py-1 text-[0.62rem] font-extrabold tracking-[0.08em] text-brand-blue">
+              KEY POINT
+            </span>
+            <span>{tech.introFlow.keypoint}</span>
+          </div>
+
+          <figcaption className="sr-only">
+            보행 데이터와 설비·공정 데이터가 수집, 품질검증, AI 분석, 현장 실증을 거쳐 건강관리 신호와
+            생산 품질 신호로 바뀌는 부트캠프의 공통 AI 파이프라인
+          </figcaption>
+        </figure>
       </div>
     );
   }
