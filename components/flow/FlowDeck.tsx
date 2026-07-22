@@ -663,27 +663,57 @@ function TechPanel({ section }: { section: string }) {
 
   if (section === "pipeline") {
     return (
-      <div className={TECH_WRAP}>
-        <h2 className="font-display text-big font-extrabold tracking-tight sm:text-huge">
-          {tech.pipeline.title}
+      <div className="mx-auto w-full max-w-content px-6 py-12 md:px-10 md:py-16 lg:pl-44 lg:pr-12">
+        <p className="flow-label">03 · AI 서비스화 파이프라인</p>
+        <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+          {tech.pipeline.flowTitle[0]}
+          {"\n"}
+          <span className="brand-gradient bg-clip-text text-transparent">{tech.pipeline.flowTitle[1]}</span>
         </h2>
-        <p className="mt-4 max-w-2xl text-small text-navy-600">{tech.pipeline.lead}</p>
-        <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {tech.pipeline.steps.map((s) => (
-            <li
-              key={s.n}
-              className={`rounded-2xl border p-6 ${
-                s.emphasis ? "border-brand-blue/40 ring-1 ring-brand-blue/20" : "border-navy-100"
-              }`}
-            >
-              <span className={`text-[0.9rem] font-bold ${s.emphasis ? "text-brand-blue" : "text-navy-400"}`}>
-                {s.n}
-              </span>
-              <h3 className="mt-3 font-display text-mid font-extrabold">{s.name}</h3>
-              <p className="mt-2 text-[0.95rem] leading-relaxed text-navy-600">{s.body}</p>
-            </li>
-          ))}
-        </ol>
+        <p className="mt-4 max-w-[66rem] text-body-lead text-navy-600">{tech.pipeline.lead}</p>
+
+        <div className="relative mt-7 max-w-[66rem] md:mt-8">
+          <div
+            aria-hidden="true"
+            className="absolute left-[8%] right-[8%] top-[2.75rem] hidden h-px bg-navy-200 md:block"
+          />
+          <ol className="relative grid gap-2.5 md:grid-cols-5">
+            {tech.pipeline.steps.map((s) => (
+              <li
+                key={s.n}
+                className={`relative z-10 flex min-h-[10.5rem] flex-col rounded-2xl border p-4 shadow-[0_10px_26px_rgba(23,35,46,0.06)] md:min-h-[13rem] ${
+                  s.emphasis
+                    ? "border-brand-blue bg-brand-blue text-white shadow-[0_14px_30px_rgba(11,63,216,0.2)]"
+                    : "border-navy-100 bg-white text-navy"
+                }`}
+              >
+                <span
+                  className={`text-[0.76rem] font-bold tracking-[0.08em] ${
+                    s.emphasis ? "text-[#A8F2FF]" : "text-brand-blue"
+                  }`}
+                >
+                  {s.n}
+                </span>
+                <h3 className="mt-2 font-display text-[1.05rem] font-extrabold leading-[1.35] md:text-[1.12rem]">
+                  {s.name}
+                </h3>
+                <p
+                  className={`mt-2 text-[0.88rem] font-medium leading-[1.55] md:text-[0.92rem] ${
+                    s.emphasis ? "text-white/85" : "text-navy-600"
+                  }`}
+                >
+                  {s.body}
+                </p>
+                <div className={`mt-auto border-t pt-2.5 ${s.emphasis ? "border-white/20" : "border-navy-100"}`}>
+                  <span className={`text-[0.68rem] font-bold ${s.emphasis ? "text-white/60" : "text-navy-400"}`}>
+                    주요 산출물
+                  </span>
+                  <strong className="mt-0.5 block text-[0.82rem] font-extrabold leading-snug">{s.output}</strong>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     );
   }

@@ -9,6 +9,7 @@ export type Step = {
   n: string;
   name: string;
   body: string;
+  output?: string;
   emphasis?: boolean;
 };
 
