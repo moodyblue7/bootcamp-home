@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 import PageHeader from "@/components/PageHeader";
+import Leadership from "@/components/about/Leadership";
 import Timeline from "@/components/about/Timeline";
-import { team, vision } from "@/lib/about";
+import { vision } from "@/lib/about";
 import { company } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -37,27 +38,7 @@ export default function AboutPage() {
 
       <Timeline />
 
-      {/* 팀 */}
-      <section className="mx-auto max-w-content px-5 py-20 lg:px-8 lg:py-24">
-        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">팀</h2>
-
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          {team.map((m) => (
-            <article key={m.name} className="rounded-2xl border border-navy-100 p-8 lg:p-10">
-              <span className="brand-gradient inline-block h-1 w-10 rounded-full" aria-hidden="true" />
-              <h3 className="mt-6 text-xl font-bold leading-snug">{m.name}</h3>
-              <p className="mt-1 text-sm font-semibold text-brand-blue">{m.role}</p>
-              <div className="mt-5 space-y-3">
-                {m.body.map((p) => (
-                  <p key={p.slice(0, 20)} className="text-sm leading-relaxed text-navy-600">
-                    {p}
-                  </p>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <Leadership className="mx-auto max-w-content px-5 py-20 lg:px-8 lg:py-24" />
 
       {/* 회사 정보 */}
       <section className="border-t border-navy-100 bg-navy-50">

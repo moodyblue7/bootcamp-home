@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { team, timeline, vision } from "@/lib/about";
+import Leadership from "@/components/about/Leadership";
+import { timeline, vision } from "@/lib/about";
 import { certifications, papers, patents, press, projects, techTransfer } from "@/lib/achievements";
 import { flowRows } from "@/lib/flow";
 import { hcCss } from "@/lib/hcContent.generated";
@@ -496,30 +497,7 @@ function TimelinePanel() {
 /** 회사소개 · 팀 (데이터: lib/about)
  *  타이포: 제목·이름 = S-Core Dream(font-display), 본문 = Freesentation(font-sans). */
 function TeamPanel() {
-  return (
-    <div className="mx-auto w-full max-w-content px-6 py-24 lg:pl-44 lg:pr-12">
-      <p className="text-small font-bold uppercase tracking-[0.2em] text-brand-blue">About · 팀</p>
-      <h2 className="mt-5 font-display text-big font-extrabold tracking-tight sm:text-huge">
-        만드는 사람과 방향을 정하는 사람
-      </h2>
-      <div className="mt-12 grid gap-5 lg:grid-cols-2">
-        {team.map((m) => (
-          <article key={m.name} className="rounded-2xl border border-navy-100 p-8">
-            <span className="brand-gradient inline-block h-1 w-10 rounded-full" aria-hidden="true" />
-            <h3 className="mt-6 font-display text-mid font-extrabold leading-snug">{m.name}</h3>
-            <p className="mt-1 text-small font-semibold text-brand-blue">{m.role}</p>
-            <div className="mt-5 space-y-3">
-              {m.body.map((p) => (
-                <p key={p.slice(0, 16)} className="text-small leading-relaxed text-navy-600">
-                  {p}
-                </p>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  );
+  return <Leadership className="flow-panel" />;
 }
 
 /** 기술 대주제 — 섹션별 렌더 (데이터: lib/technology)

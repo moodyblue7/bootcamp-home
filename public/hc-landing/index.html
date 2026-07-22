@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIWalker — 손안에서 시작하는 근육 건강 관리</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
 /* 사이트 공통 웹폰트 (scripts/convert_fonts.py). flow 임베드/직접 접근 모두에서 적용 */
 @font-face{font-family:'S-Core Dream';src:url('/fonts/scdream-6.woff2') format('woff2');font-weight:600;font-display:swap}
@@ -14,18 +12,18 @@
 @font-face{font-family:'Freesentation';src:url('/fonts/freesentation-6.woff2') format('woff2');font-weight:600;font-display:swap}
 @font-face{font-family:'Freesentation';src:url('/fonts/freesentation-7.woff2') format('woff2');font-weight:700;font-display:swap}
 :root{
-  --bg:#F4F6F1;
-  --ink:#10241D;
-  --dark:#0F2A22;
-  --pine:#1D6A50;
+  --bg:#FFFFFF;
+  --ink:#17232E;
+  --dark:#17232E;
+  --pine:#0B3FD8;
   --ok:#2E9E68;
   --warn:#E8A33A;
   --risk:#D4553F;
-  --lime:#CDEA6A;
-  --muted:#5C7168;
-  --line:#DCE3DA;
+  --lime:#00CFF0;
+  --muted:#3A4956;
+  --line:#E4E8EC;
   --card:#FFFFFF;
-  --r:26px;
+  --r:24px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -36,14 +34,16 @@ body{
 }
 /* 큰 제목은 사이트 공통 제목체(S-Core Dream) */
 h1,h2,h3,.logo{font-family:'S-Core Dream','Freesentation',sans-serif}
-/* 숫자·영문 라벨은 Space Grotesk 유지(디자인 요소) */
-.mono{font-family:'Space Grotesk','Freesentation',sans-serif}
-.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
-.eyebrow{
-  font-size:12px;font-weight:900;letter-spacing:.24em;color:var(--pine);
-  text-transform:uppercase;margin-bottom:14px;
+/* 숫자·영문 라벨도 사이트 공통 본문체를 사용한다. */
+.mono{font-family:'Freesentation',sans-serif;font-variant-numeric:tabular-nums}
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 3rem 0 6.5rem}
+.eyebrow,.f-num{
+  font-family:'Freesentation','Apple SD Gothic Neo',sans-serif;
+  font-size:16px;font-weight:700;line-height:1.5;letter-spacing:.18em;color:var(--pine);
+  text-transform:uppercase;
 }
-section{padding:88px 0}
+.eyebrow{margin-bottom:16px}
+section{padding:80px 0}
 
 /* ── photo frame system ──
    .photo 안에 <img src="images/…">를 넣으세요.
@@ -73,7 +73,7 @@ section{padding:88px 0}
 
 /* ── nav ── */
 nav{
-  position:sticky;top:0;z-index:50;background:rgba(244,246,241,.85);
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
 }
 .nav-in{
@@ -89,43 +89,43 @@ nav{
 .live .dot{width:8px;height:8px;border-radius:50%;background:var(--risk);animation:blink 1.6s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
 .btn{
-  display:inline-block;background:var(--dark);color:#fff;text-decoration:none;
-  font-size:13.5px;font-weight:900;padding:11px 22px;border-radius:999px;
+  display:inline-block;background:var(--pine);color:#fff;text-decoration:none;
+  font-size:16px;font-weight:600;padding:12px 22px;border-radius:999px;
   transition:transform .15s, background .15s;
 }
-.btn:hover{background:var(--pine);transform:translateY(-1px)}
+.btn:hover{background:#0026E6;transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
 .btn.ghost:hover{background:var(--ink);color:#fff}
 .btn.lime{background:var(--lime);color:var(--ink)}
 .btn.lime:hover{background:#fff}
 
 /* ── hero ── */
-.hero{padding:64px 0 48px}
-.hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:44px;align-items:center}
-.hero h1{font-size:clamp(38px,5.2vw,60px);font-weight:900;line-height:1.16;letter-spacing:-.028em}
-.hero h1 .frame{position:relative;display:inline-block;padding:2px 10px;color:var(--pine)}
+.hero{padding:96px 0 48px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:start}
+.hero h1{font-size:clamp(40px,4.4vw,56px);font-weight:800;line-height:1.15;letter-spacing:-.035em}
+.hero h1 .frame{position:relative;display:inline-block;padding:0;color:var(--pine)}
 .hero h1 .frame::before,.hero h1 .frame::after,
 .hero h1 .frame b::before,.hero h1 .frame b::after{
-  content:"";position:absolute;width:14px;height:14px;border:2.5px solid var(--pine);
+  display:none;
 }
 .hero h1 .frame::before{top:-3px;left:-3px;border-right:none;border-bottom:none}
 .hero h1 .frame::after{top:-3px;right:-3px;border-left:none;border-bottom:none}
 .hero h1 .frame b::before{bottom:-3px;left:-3px;border-right:none;border-top:none}
 .hero h1 .frame b::after{bottom:-3px;right:-3px;border-left:none;border-top:none}
-.hero p.sub{margin:20px 0 28px;font-size:16.5px;color:var(--muted);max-width:460px}
+.hero p.sub{margin:24px 0 28px;font-size:18px;line-height:1.85;color:var(--muted);max-width:48rem}
 .hero p.sub b{color:var(--ink);font-weight:700}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap}
 
 /* hero photo + floating UI */
 .hero-photo{position:relative}
-.hero-photo .photo{aspect-ratio:4/4.6;box-shadow:0 30px 70px rgba(16,36,29,.22)}
+.hero-photo .photo{aspect-ratio:4/4.6;box-shadow:0 24px 64px rgba(23,35,46,.16)}
 .chip{
   position:absolute;background:rgba(255,255,255,.96);border:1px solid var(--line);
   border-radius:16px;padding:11px 16px;box-shadow:0 12px 32px rgba(16,36,29,.16);
   font-size:12px;font-weight:700;z-index:2;animation:bob 4.5s ease-in-out infinite;
 }
-.chip .v{font-size:17px;font-weight:900;color:var(--pine)}
-.chip.dark{background:rgba(15,42,34,.94);border-color:transparent;color:#CFE3D6}
+.chip .v{font-size:17px;font-weight:700;color:var(--pine)}
+.chip.dark{background:rgba(23,35,46,.94);border-color:transparent;color:#E4E8EC}
 .chip.dark .v{color:var(--lime)}
 .chip.c1{top:7%;left:-4%}
 .chip.c2{top:38%;right:-5%;animation-delay:.8s}
@@ -140,8 +140,8 @@ nav{
 
 /* ── ticker ── */
 .ticker{
-  border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);
-  overflow:hidden;background:var(--lime);padding:13px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  overflow:hidden;background:#F4F6F8;padding:13px 0;
 }
 .tick-track{display:flex;width:max-content;animation:scroll 28s linear infinite}
 @keyframes scroll{to{transform:translateX(-50%)}}
@@ -153,19 +153,20 @@ nav{
 
 /* ── features ── */
 #features .head{max-width:640px;margin-bottom:56px}
-#features h2{font-size:clamp(28px,3.6vw,42px);font-weight:900;letter-spacing:-.02em;line-height:1.25}
+#features h2{font-size:clamp(32px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.25}
 .feature{
   display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:center;
   padding:48px 0;border-top:1px solid var(--line);
 }
 .feature.flip{grid-template-columns:1.15fr 1fr}
 .feature.flip .f-media{order:-1}
-.f-num{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--pine);letter-spacing:.14em;margin-bottom:10px}
-.f-text h3{font-size:clamp(22px,2.6vw,30px);font-weight:900;letter-spacing:-.015em;margin-bottom:12px}
-.f-text p{font-size:15px;color:var(--muted);max-width:440px}
+.f-num{margin-bottom:10px}
+.f-text h3{font-size:clamp(24px,2.2vw,28px);font-weight:800;letter-spacing:-.025em;line-height:1.35;margin-bottom:14px}
+.f-text p{font-size:18px;line-height:1.85;color:var(--muted);max-width:48rem}
 .f-text p b{color:var(--ink)}
+.f-next-line{display:inline-block;white-space:nowrap}
 .f-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.f-tag{font-size:12px;font-weight:700;border:1.5px solid var(--ink);border-radius:999px;padding:5px 13px}
+.f-tag{font-size:14px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--ink)}
 .f-media{position:relative}
 .f-media .photo{aspect-ratio:16/11}
 /* 사진 위 오버레이 UI */
@@ -192,7 +193,7 @@ nav{
 .stats-band h2{font-size:clamp(26px,3.4vw,38px);font-weight:900;letter-spacing:-.02em;margin-bottom:44px;line-height:1.3}
 .stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.14);border-radius:18px;overflow:hidden}
 .stat{background:var(--dark);padding:26px 22px}
-.stat .v{font-family:'Space Grotesk','Noto Sans KR',sans-serif;font-size:38px;font-weight:700;color:var(--lime);line-height:1.1}
+.stat .v{font-family:'Freesentation',sans-serif;font-size:38px;font-weight:700;color:var(--lime);line-height:1.1;font-variant-numeric:tabular-nums}
 .stat .v small{font-size:19px}
 .stat .k{font-size:12.5px;color:#AFC5BB;margin-top:8px}
 
@@ -207,7 +208,7 @@ nav{
 }
 .tl-item.done::before{background:var(--pine)}
 .tl-item.now::before{background:var(--lime);border-color:var(--ink);box-shadow:0 0 0 6px rgba(205,234,106,.4)}
-.tl-date{font-family:'Space Grotesk','Noto Sans KR',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.tl-date{font-family:'Freesentation',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;font-variant-numeric:tabular-nums}
 .tl-date .flag{color:var(--pine);font-weight:900}
 .tl-item.now .tl-date .flag{background:var(--lime);color:var(--ink);padding:2px 8px;border-radius:6px}
 .tl-item h3{font-size:21px;font-weight:900;margin:4px 0 4px;letter-spacing:-.01em}
@@ -225,7 +226,7 @@ nav{
   padding:22px 4px;font-size:17px;font-weight:900;letter-spacing:-.01em;
 }
 .faq summary::-webkit-details-marker{display:none}
-.faq summary .plus{font-family:'Space Grotesk',sans-serif;font-size:22px;color:var(--pine);transition:transform .25s;flex-shrink:0;margin-left:16px}
+.faq summary .plus{font-family:'Freesentation',sans-serif;font-size:22px;color:var(--pine);transition:transform .25s;flex-shrink:0;margin-left:16px}
 .faq details[open] summary .plus{transform:rotate(45deg)}
 .faq .a{padding:0 4px 24px;font-size:14.5px;color:var(--muted);max-width:720px}
 .faq .a b{color:var(--ink)}
@@ -243,6 +244,8 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
 .foot-in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media(max-width:920px){
+  .wrap{padding:0 24px}
+  .hero{padding-top:80px}
   section{padding:64px 0}
   .nav-links,.live{display:none}
   .hero-grid{grid-template-columns:1fr}
@@ -250,6 +253,7 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
   .chip.c2{right:2%}
   .feature,.feature.flip{grid-template-columns:1fr;gap:24px}
   .feature.flip .f-media{order:0}
+  .f-next-line{white-space:normal}
   .stat-grid{grid-template-columns:1fr 1fr}
   .stat:last-child{grid-column:1/-1}
   .tl-item{grid-template-columns:1fr}
@@ -268,7 +272,7 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
       <a href="#timeline">걸어온 길</a>
       <a href="#faq">FAQ</a>
     </div>
-    <div class="live"><span class="dot"></span>파크골프장 리빙랩 실증 진행 중</div>
+    <div class="live">AI 근육건강 체크존</div>
     <a class="btn" href="#contact">도입 문의</a>
   </div>
 </nav>
@@ -277,12 +281,12 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">근육건강 조기스크리닝</div>
-      <h1>손안에서 시작하는<br><span class="frame"><b>근육 건강 관리</b></span></h1>
-      <p class="sub">장비도, 검사복도, 배우는 것도 없습니다. 늘 쓰던 <b>스마트폰 하나</b>로<br>— 평소 걸음을 읽고, 근육 건강의 변화를 신호등처럼 알려드립니다.</p>
+      <div class="eyebrow">AI HEALTHCARE · AI 근육건강 체크존</div>
+      <h1>일상의 걸음을,<br><span class="frame"><b>근육 건강 관리 신호로.</b></span></h1>
+      <p class="sub">AIWALKER는 스마트폰 센서로 수집한 보행 데이터를 분석해 <b>개인의 변화를 확인할 수 있는 근육 건강 관리 정보</b>를 제공합니다. 공공 체육·복지시설에서는 ‘AI 근육건강 체크존’으로 운영할 수 있습니다.</p>
       <div class="cta-row">
-        <a class="btn" href="#contact">우리 시설에 도입하기</a>
-        <a class="btn ghost" href="#features">어떻게 되나요?</a>
+        <a class="btn" href="#contact">서비스 도입 문의</a>
+        <a class="btn ghost" href="#features">서비스 구성 보기</a>
       </div>
     </div>
 
@@ -295,9 +299,9 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
         </div>
         <img src="images/hero-hand.jpg" alt="어르신 손에 들린 스마트폰, AIWalker 근육건강 신호등 화면" onerror="this.remove()">
       </div>
-      <div class="chip c1">걸음 속도<div class="v mono">1.12 m/s</div></div>
-      <div class="chip c2">오늘의 신호등<div class="lamps"><span class="lamp g"></span><span class="lamp y"></span><span class="lamp r"></span></div></div>
-      <div class="chip dark c3">지난달의 나와 비교<div class="v mono">+0.04 m/s ↑</div></div>
+      <div class="chip c1">보행 데이터<div class="v">수집 완료</div></div>
+      <div class="chip c2">근육 건강 관리 신호<div class="lamps"><span class="lamp g"></span><span class="lamp y"></span><span class="lamp r"></span></div></div>
+      <div class="chip dark c3">개인 변화 추이<div class="v">이전 기록과 비교</div></div>
     </div>
   </div>
 </header>
@@ -305,14 +309,12 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
 <!-- ═══════════ TICKER ═══════════ -->
 <div class="ticker" aria-hidden="true">
   <div class="tick-track">
-    <div class="tick-item">장비 없음</div><div class="tick-item">검사복 없음</div>
-    <div class="tick-item">걷기만 하면 끝</div><div class="tick-item">신호등 결과</div>
-    <div class="tick-item">변화 추적</div><div class="tick-item">보호자 공유</div>
-    <div class="tick-item">공인시험 검증 기술</div>
-    <div class="tick-item">장비 없음</div><div class="tick-item">검사복 없음</div>
-    <div class="tick-item">걷기만 하면 끝</div><div class="tick-item">신호등 결과</div>
-    <div class="tick-item">변화 추적</div><div class="tick-item">보호자 공유</div>
-    <div class="tick-item">공인시험 검증 기술</div>
+    <div class="tick-item">센서 데이터 수집</div><div class="tick-item">데이터 품질 확인</div>
+    <div class="tick-item">보행 분석 AI</div><div class="tick-item">개인 변화 추적</div>
+    <div class="tick-item">현장 서비스</div>
+    <div class="tick-item">센서 데이터 수집</div><div class="tick-item">데이터 품질 확인</div>
+    <div class="tick-item">보행 분석 AI</div><div class="tick-item">개인 변화 추적</div>
+    <div class="tick-item">현장 서비스</div>
   </div>
 </div>
 
@@ -321,26 +323,24 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
   <div class="wrap">
     <div class="head">
       <div class="eyebrow">Features</div>
-      <h2>하나의 기능이 아니라,<br>어르신의 일상에 맞춘 완결된 시스템입니다.</h2>
+      <h2>측정부터 변화 확인까지,<br>현장에서 운영되는 건강관리 흐름</h2>
     </div>
 
     <!-- 01 -->
     <div class="feature">
       <div class="f-text">
-        <div class="f-num mono">01 — 평상시 걸음</div>
-        <h3>평소처럼 걷습니다</h3>
-        <p>체육시설 키오스크에서 체크인하고 늘 걷던 대로 잠시 걸으면 끝.
-        스마트폰 내장 센서가 <b>걸음 속도·보폭·리듬</b>을 조용히 읽습니다.
-        특별한 동작도, 새로 배울 것도 없습니다.</p>
-        <div class="f-tags"><span class="f-tag">QR·BLE 간편 체크인</span><span class="f-tag">별도 장비 불필요</span></div>
+        <div class="f-num">01 — 데이터 수집</div>
+        <h3>평소의 걸음을 데이터로 수집합니다</h3>
+        <p>시설에서 간편하게 체크인한 뒤 평소처럼 걸으면 스마트폰 센서가<br><b>걸음 속도·보폭·리듬</b>을 조용히 읽습니다.<br><span class="f-next-line">특별한 동작이나 새로 배울 것은 없습니다.</span></p>
+        <div class="f-tags"><span class="f-tag">스마트폰 센서</span><span class="f-tag">간편 체크인</span></div>
       </div>
       <div class="f-media">
         <div class="photo">
           <div class="ph-label"><div class="cam">📷</div><b>feature-01-walk.jpg</b><span>햇살 좋은 파크골프장을 자연스럽게 걷는 어르신, 주머니 속 스마트폰</span></div>
           <img src="images/feature-01-walk.jpg" alt="파크골프장을 걷는 어르신" onerror="this.remove()">
         </div>
-        <div class="ov" style="right:6%;bottom:8%"><span class="accent mono">● REC</span> 측정 중 — 보행 리듬 안정
-          <svg class="spark" width="130" height="26" viewBox="0 0 130 26" fill="none"><path d="M2,13 L18,13 L23,4 L28,22 L33,8 L38,18 L43,13 L60,13 L65,3 L70,23 L75,9 L80,17 L85,13 L102,13 L107,5 L112,21 L117,10 L122,16 L128,13" stroke="#1D6A50" stroke-width="2" stroke-linecap="round"/></svg>
+        <div class="ov" style="right:6%;bottom:8%"><span class="accent">● 데이터 수집 중</span> — 보행 패턴 확인
+          <svg class="spark" width="130" height="26" viewBox="0 0 130 26" fill="none"><path d="M2,13 L18,13 L23,4 L28,22 L33,8 L38,18 L43,13 L60,13 L65,3 L70,23 L75,9 L80,17 L85,13 L102,13 L107,5 L112,21 L117,10 L122,16 L128,13" stroke="#0B3FD8" stroke-width="2" stroke-linecap="round"/></svg>
         </div>
       </div>
     </div>
@@ -348,11 +348,10 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
     <!-- 02 -->
     <div class="feature flip">
       <div class="f-text">
-        <div class="f-num mono">02 — 간편한 안내 UI</div>
-        <h3>결과는 신호등처럼, 한눈에</h3>
-        <p>복잡한 수치 대신 <b>정상 · 주의 · 위험</b> 세 가지 색.
-        측정이 끝나면 그 자리에서 바로 확인하고, 앱에는 기록이 차곡차곡 쌓입니다.</p>
-        <div class="f-tags"><span class="f-tag">즉시 결과</span><span class="f-tag">앱 리포트 자동 저장</span></div>
+        <div class="f-num">02 — AI 분석</div>
+        <h3>보행 데이터를 근육 건강 관리 신호로 바꿉니다</h3>
+        <p>AIWALKER는 보행속도·걸음수·보폭 등 보행 특성을 분석해, 결과를 이해하기 쉬운 <b>단계별 근육 건강 관리 신호</b>로 바꿉니다.</p>
+        <div class="f-tags"><span class="f-tag">보행 특성 분석</span><span class="f-tag">단계별 관리 신호</span></div>
       </div>
       <div class="f-media">
         <div class="photo">
@@ -360,7 +359,7 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
           <img src="images/feature-02-kiosk.jpg" alt="키오스크에서 결과를 확인하는 어르신" onerror="this.remove()">
         </div>
         <div class="ov" style="left:6%;bottom:8%">
-          <div class="ov-lamps"><span class="lamp g">정상</span><span class="lamp y"></span><span class="lamp r"></span><span class="big" style="margin-left:6px">그 자리에서 바로 확인</span></div>
+          <div class="ov-lamps"><span class="lamp g"></span><span class="lamp y"></span><span class="lamp r"></span><span class="big" style="margin-left:6px">근육 건강 관리 신호 확인</span></div>
         </div>
       </div>
     </div>
@@ -368,30 +367,27 @@ footer{padding:36px 0 44px;font-size:12.5px;color:var(--muted)}
     <!-- 03 -->
     <div class="feature">
       <div class="f-text">
-        <div class="f-num mono">03 — 장기적 관찰 및 추적</div>
-        <h3>지난달의 나와 비교합니다</h3>
-        <p>한 번의 측정보다 중요한 건 <b>변화</b>입니다.
-        개인별 보행 기준선을 만들고 걸음이 느려지는 신호를 먼저 포착 —
-        타인과의 비교가 아닌, 어제의 나와의 비교입니다.</p>
-        <div class="f-tags"><span class="f-tag">개인 기준선</span><span class="f-tag">조기 변화 감지</span></div>
+        <div class="f-num">03 — 변화 추적</div>
+        <h3>한 번의 수치보다 개인의 변화를 봅니다</h3>
+        <p>측정 기록을 누적해 개인별 기준선과 변화 추이를 확인합니다. 다른 사람과 단순 비교하지 않고 <b>자신의 이전 기록을 중심으로</b> 근육 건강 관리 흐름을 살펴봅니다.</p>
+        <div class="f-tags"><span class="f-tag">개인 기준선</span><span class="f-tag">변화 추이</span></div>
       </div>
       <div class="f-media">
         <div class="photo">
           <div class="ph-label"><div class="cam">📷</div><b>feature-03-app.jpg</b><span>앱의 6개월 추이 그래프가 표시된 스마트폰 화면 클로즈업</span></div>
           <img src="images/feature-03-app.jpg" alt="AIWalker 앱의 걸음 속도 추이 그래프" onerror="this.remove()">
         </div>
-        <div class="ov dark" style="right:6%;top:8%">걸음 속도 · 6개월<br><span class="big"><span class="accent mono">+0.04 m/s</span> 좋아졌어요</span></div>
+        <div class="ov dark" style="right:6%;top:8%">개인 변화 추이<br><span class="big"><span class="accent">●</span> 이전 기록과 비교</span></div>
       </div>
     </div>
 
     <!-- 04 -->
     <div class="feature flip">
       <div class="f-text">
-        <div class="f-num mono">04 — 가족 안심 기능(디지털 안심망)</div>
-        <h3>멀리 있는 가족도 안심</h3>
-        <p>자녀와 요양보호사가 앱으로 어르신의 근육 건강 변화를 함께 봅니다.
-        <b>주의 신호</b>가 켜지면 알림으로 — 돌봄의 공백을 채우는 디지털 안심망입니다.</p>
-        <div class="f-tags"><span class="f-tag">보호자 앱</span><span class="f-tag">변화 알림</span></div>
+        <div class="f-num">04 — 보호자 연계</div>
+        <h3>본인 동의 아래 보호자와 변화를 공유합니다</h3>
+        <p>실버케어링크를 통해 본인 동의 범위에서 보호자가 <b>변화 추이와 알림</b>을 함께 확인할 수 있습니다. 지속적인 근육 건강 관리를 돕는 연결 기능입니다.</p>
+        <div class="f-tags"><span class="f-tag">보호자 앱</span><span class="f-tag">동의 기반 공유</span></div>
       </div>
       <div class="f-media">
         <div class="photo">
