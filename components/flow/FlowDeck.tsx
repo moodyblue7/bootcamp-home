@@ -613,40 +613,48 @@ function TechPanel({ section }: { section: string }) {
 
   if (section === "bridge") {
     return (
-      <div className={TECH_WRAP}>
-        <h2 className="font-display text-big font-extrabold tracking-tight sm:text-huge">
-          {tech.bridge.title}
+      <div className="mx-auto w-full max-w-content px-6 py-12 md:px-10 md:py-16 lg:pl-44 lg:pr-12">
+        <p className="flow-label">02 · 기술 역량의 확장</p>
+        <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+          {tech.bridge.flowTitle[0]}
+          {"\n"}
+          <span className="brand-gradient bg-clip-text text-transparent">{tech.bridge.flowTitle[1]}</span>
         </h2>
-        <div className="mt-8 overflow-x-auto">
-          <table className="w-full min-w-[40rem] border-collapse text-small">
-            <thead>
-              <tr className="border-y border-navy-200 text-left">
-                <th className="w-36 py-3 pr-4 font-semibold text-navy-400" />
-                <th className="py-3 pr-6 font-bold">AI 헬스케어</th>
-                <th className="py-3 font-bold">제조 AX</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tech.bridge.rows.map((r, i) => {
-                const last = i === tech.bridge.rows.length - 1;
-                return (
-                  <tr key={r.axis} className={`border-b border-navy-100 ${last ? "bg-navy-50" : ""}`}>
-                    <th className="py-4 pr-4 text-left align-top text-[0.95rem] font-bold text-navy-400">
-                      {r.axis}
-                    </th>
-                    <td className={`py-4 pr-6 align-top leading-relaxed ${last ? "font-bold" : "text-navy-600"}`}>
-                      {r.healthcare}
-                    </td>
-                    <td className={`py-4 align-top leading-relaxed ${last ? "font-bold" : "text-navy-600"}`}>
-                      {r.manufacturing}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+
+        <div className="mt-6 max-w-[66rem] rounded-2xl border border-navy-100 bg-navy-50 p-2.5 shadow-[0_12px_32px_rgba(23,35,46,0.06)] md:mt-7 md:p-3">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-[7.5rem_minmax(0,1fr)_minmax(0,1fr)]">
+            <div className="hidden items-center justify-center rounded-xl bg-navy px-3 py-2 text-[0.72rem] font-bold tracking-[0.1em] text-white/65 md:flex">
+              공통 과정
+            </div>
+            <div className="rounded-xl border border-brand-cyan/25 bg-brand-cyan/10 px-3 py-2.5 text-center text-[0.92rem] font-extrabold text-[#007E94]">
+              AI 헬스케어
+            </div>
+            <div className="rounded-xl border border-brand-blue/20 bg-brand-blue/10 px-3 py-2.5 text-center text-[0.92rem] font-extrabold text-brand-blue">
+              제조 AX
+            </div>
+          </div>
+
+          <div className="mt-2 grid gap-2">
+            {tech.bridge.rows.map((row) => (
+              <div
+                key={row.axis}
+                className="grid grid-cols-2 gap-2 md:grid-cols-[7.5rem_minmax(0,1fr)_minmax(0,1fr)]"
+              >
+                <div className="col-span-2 flex items-center rounded-lg bg-navy px-3 py-1.5 text-[0.76rem] font-bold tracking-[0.04em] text-white md:col-span-1 md:justify-center md:py-2.5 md:text-center">
+                  {row.axis}
+                </div>
+                <div className="flex min-h-12 items-center rounded-lg border border-brand-cyan/20 bg-white px-3 py-2.5 text-[0.9rem] font-semibold leading-[1.45] text-navy-600 md:text-[0.96rem]">
+                  {row.healthcare}
+                </div>
+                <div className="flex min-h-12 items-center rounded-lg border border-brand-blue/15 bg-white px-3 py-2.5 text-[0.9rem] font-semibold leading-[1.45] text-navy-600 md:text-[0.96rem]">
+                  {row.manufacturing}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <p className="mt-8 max-w-3xl border-l-2 border-brand-blue pl-5 text-mid font-semibold leading-relaxed">
+
+        <p className="mt-5 max-w-[66rem] rounded-r-xl border-l-4 border-brand-blue bg-navy-50 px-5 py-3.5 text-body-base font-semibold text-navy md:mt-6">
           {tech.bridge.close}
         </p>
       </div>

@@ -25,16 +25,17 @@ export const tech = {
   },
 
   bridge: {
-    title: "두 사업이 공유하는 것",
+    title: "헬스케어에서 검증한 전 과정을, 제조 AX의 현장 적용 역량으로 확장합니다.",
+    flowTitle: ["헬스케어에서 검증한 전 과정을,", "제조 AX의 현장 적용 역량으로 확장합니다."],
     rows: [
-      { axis: "입력", healthcare: "스마트폰 · IMU 가속도/자이로", manufacturing: "설비 · 공정 센서" },
-      { axis: "성격", healthcare: "잡음 섞인 시계열", manufacturing: "잡음 섞인 시계열" },
-      { axis: "제약", healthcare: "현장에서 즉시 판단, 네트워크 불안정", manufacturing: "라인 정지 불가, 지연 허용 안 됨" },
-      { axis: "리스크", healthcare: "틀린 건강 신호는 신뢰를 잃는다", manufacturing: "틀린 품질 신호는 라인을 멈춘다" },
-      { axis: "그래서 필요한 것", healthcare: "품질 게이트 + 경량 추론", manufacturing: "품질 게이트 + 경량 추론" },
+      { axis: "현장 데이터", healthcare: "스마트폰 보행·행동 센서 데이터", manufacturing: "설비·공정·검사 데이터" },
+      { axis: "품질검증", healthcare: "센서 오류와 이상 구간 선별", manufacturing: "결측·중복·설비별 편차 정합" },
+      { axis: "AI 분석", healthcare: "보행 특성과 개인 변화 분석", manufacturing: "이상징후와 공정 조건 분석" },
+      { axis: "현장 검증", healthcare: "공인시험·인체 대상 연구·현장 실증", manufacturing: "양산라인 실증·작업자 승인 절차" },
+      { axis: "제공 가치", healthcare: "근육건강 관리 신호", manufacturing: "생산 품질·공정 개선 신호" },
     ],
     close:
-      "부트캠프가 헬스케어에서 4년간 만든 것은 보행 알고리즘 하나가 아니라, 센서 데이터를 현장이 신뢰할 수 있는 판단으로 바꾸는 파이프라인이었습니다. 그 파이프라인을 제조 현장으로 옮기고 있습니다.",
+      "부트캠프가 확장하는 것은 하나의 알고리즘이 아니라, 데이터를 수집하고 품질을 검증해 현장 서비스로 완성하는 전 과정입니다.",
   },
 
   pipeline: {
