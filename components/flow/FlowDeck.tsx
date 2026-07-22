@@ -720,34 +720,62 @@ function TechPanel({ section }: { section: string }) {
 
   if (section === "gate") {
     return (
-      <div className={TECH_WRAP}>
-        <h2 className="font-display text-big font-extrabold leading-tight tracking-tight sm:text-huge">
-          {tech.gate.title}
+      <div className="mx-auto w-full max-w-content px-6 py-12 md:px-10 md:py-16 lg:pl-44 lg:pr-12">
+        <p className="flow-label">04 · 데이터 품질검증</p>
+        <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+          {tech.gate.flowTitle[0]}
+          {"\n"}
+          <span className="brand-gradient bg-clip-text text-transparent">{tech.gate.flowTitle[1]}</span>
         </h2>
-        <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_20rem] lg:gap-16">
-          <div className="max-w-2xl space-y-5">
-            {tech.gate.body.map((p) => (
-              <p key={p.slice(0, 16)} className="text-small leading-[1.9] text-navy-600">
-                {p}
-              </p>
-            ))}
+        <p className="mt-4 max-w-[66rem] text-body-lead text-navy-600">{tech.gate.lead}</p>
+
+        <div className="mt-6 grid max-w-[66rem] gap-3 md:grid-cols-[minmax(0,1.45fr)_minmax(14rem,0.55fr)] md:items-stretch">
+          <div className="rounded-2xl border border-navy-100 bg-navy-50 p-3.5 shadow-[0_12px_30px_rgba(23,35,46,0.06)]">
+            <p className="text-[0.72rem] font-bold tracking-[0.08em] text-brand-blue">품질 확인 항목</p>
+            <ol className="mt-2.5 grid gap-2 md:grid-cols-3">
+              {tech.gate.checks.map((check) => (
+                <li key={check.n} className="rounded-xl border border-navy-100 bg-white p-3">
+                  <span className="text-[0.7rem] font-bold tracking-[0.08em] text-brand-blue">{check.n}</span>
+                  <h3 className="mt-1 font-display text-[0.94rem] font-extrabold leading-snug text-navy">
+                    {check.name}
+                  </h3>
+                  <p className="mt-1.5 text-[0.88rem] font-medium leading-[1.5] text-navy-600">{check.body}</p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-2.5 grid grid-cols-2 gap-2">
+              <div className="rounded-xl bg-brand-blue px-3 py-2.5 text-white">
+                <span className="text-[0.68rem] font-bold text-[#A8F2FF]">{tech.gate.decision.pass.label}</span>
+                <strong className="mt-0.5 block text-[0.88rem] font-extrabold leading-snug">
+                  {tech.gate.decision.pass.body}
+                </strong>
+              </div>
+              <div className="rounded-xl border border-[#DFC98A] bg-[#FFF9E9] px-3 py-2.5 text-navy">
+                <span className="text-[0.68rem] font-bold text-[#8A6A1F]">{tech.gate.decision.retry.label}</span>
+                <strong className="mt-0.5 block text-[0.88rem] font-extrabold leading-snug">
+                  {tech.gate.decision.retry.body}
+                </strong>
+              </div>
+            </div>
           </div>
-          <div className="rounded-2xl border border-navy-100 bg-navy-50 p-7">
-            <p className="text-[0.9rem] font-bold text-brand-blue">{tech.gate.proof.label}</p>
-            <dl className="mt-5 space-y-5">
-              {tech.gate.proof.stats.map((s) => (
-                <div key={s.k}>
-                  <dd className="brand-gradient bg-clip-text font-display text-big font-extrabold text-transparent">
-                    {s.v}
-                  </dd>
-                  <dt className="mt-1 text-[0.95rem] text-navy-400">{s.k}</dt>
+
+          <aside className="rounded-2xl bg-[#10243A] p-4 text-white shadow-[0_16px_36px_rgba(16,36,58,0.16)]">
+            <p className="text-[0.68rem] font-bold leading-[1.45] tracking-[0.08em] text-brand-cyan">
+              {tech.gate.proof.label}
+            </p>
+            <dl className="mt-3 grid grid-cols-3 gap-2 md:grid-cols-1 md:gap-2.5">
+              {tech.gate.proof.stats.map((stat) => (
+                <div key={stat.k} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2.5">
+                  <dd className="font-display text-[1.45rem] font-extrabold leading-none text-white">{stat.v}</dd>
+                  <dt className="mt-1 text-[0.72rem] font-semibold leading-snug text-white/65">{stat.k}</dt>
                 </div>
               ))}
             </dl>
-            <p className="mt-6 border-t border-navy-200 pt-4 text-[0.9rem] leading-relaxed text-navy-400">
+            <p className="mt-3 border-t border-white/10 pt-3 text-[0.76rem] font-medium leading-[1.5] text-white/65">
               {tech.gate.proof.note}
             </p>
-          </div>
+          </aside>
         </div>
       </div>
     );
