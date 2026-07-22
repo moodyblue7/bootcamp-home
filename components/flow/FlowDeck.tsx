@@ -847,22 +847,43 @@ function TechPanel({ section }: { section: string }) {
 
   // research
   return (
-    <div className={TECH_WRAP}>
-      <h2 className="font-display text-big font-extrabold tracking-tight sm:text-huge">
-        {tech.research.title}
+    <div className="mx-auto w-full max-w-content px-6 py-12 md:px-10 md:py-16 lg:pl-44 lg:pr-12">
+      <p className="flow-label">06 · 연구·검증 기반</p>
+      <h2 className="mt-4 max-w-[66rem] whitespace-pre-line font-display text-display-section font-extrabold">
+        {tech.research.flowTitle[0]}
+        {"\n"}
+        <span className="brand-gradient bg-clip-text text-transparent">{tech.research.flowTitle[1]}</span>
       </h2>
-      <p className="mt-4 max-w-2xl text-small text-navy-600">{tech.research.lead}</p>
-      <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
+      <p className="mt-4 max-w-[66rem] text-body-lead text-navy-600">{tech.research.lead}</p>
+
+      <dl className="mt-6 grid max-w-[66rem] gap-3 md:grid-cols-2 xl:grid-cols-4">
         {tech.research.stats.map((s) => (
-          <div key={s.k}>
-            <dd className="brand-gradient bg-clip-text font-display text-huge font-extrabold tracking-tight text-transparent">
+          <div
+            key={s.n}
+            className="rounded-2xl border border-navy-100 bg-navy-50 p-4 shadow-[0_12px_30px_rgba(23,35,46,0.05)] md:p-5"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <dt className="font-display text-[0.94rem] font-extrabold text-navy">{s.k}</dt>
+              <span className="text-[0.7rem] font-bold tracking-[0.1em] text-brand-blue">{s.n}</span>
+            </div>
+            <dd className="brand-gradient mt-5 whitespace-nowrap bg-clip-text font-display text-[1.55rem] font-extrabold leading-none tracking-tight text-transparent md:text-[1.75rem] xl:text-[1.62rem] 2xl:text-[1.75rem]">
               {s.v}
             </dd>
-            <dt className="mt-3 text-small font-semibold">{s.k}</dt>
-            <p className="mt-1 text-[0.9rem] text-navy-400">{s.note}</p>
+            <p className="mt-3 border-t border-navy-100 pt-3 text-[0.84rem] font-medium leading-[1.5] text-navy-500 md:text-[0.88rem]">
+              {s.note}
+            </p>
           </div>
         ))}
       </dl>
+
+      <div className="mt-3 flex max-w-[66rem] flex-col gap-3 rounded-2xl bg-[#10243A] px-5 py-4 text-white shadow-[0_16px_36px_rgba(16,36,58,0.14)] md:flex-row md:items-center md:justify-between md:px-6">
+        <p className="max-w-[48rem] text-[0.9rem] font-semibold leading-[1.55] text-white/85 md:text-[0.94rem]">
+          {tech.research.bridge}
+        </p>
+        <span className="shrink-0 self-start rounded-full border border-brand-cyan/35 bg-brand-cyan/10 px-3 py-2 text-[0.72rem] font-bold text-brand-cyan md:self-auto">
+          {tech.research.status}
+        </span>
+      </div>
     </div>
   );
 }
