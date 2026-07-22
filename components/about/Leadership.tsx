@@ -5,7 +5,7 @@ export default function Leadership({ className }: { className: string }) {
     <div className={className}>
       <p className="flow-label">{teamSection.label}</p>
       <h2 className="flow-section-title mt-4">{teamSection.headline}</h2>
-      <p className="flow-lead mt-5">{teamSection.lead}</p>
+      <p className="flow-lead mt-5 whitespace-pre-line">{teamSection.lead}</p>
 
       <section
         aria-label="핵심 리더십"
