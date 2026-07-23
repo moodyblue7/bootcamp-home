@@ -118,16 +118,4 @@ export const team = [
       "GIST 연구원 출신",
     ],
   },
-  {
-    name: "Lismer Andres Caceres Najarro",
-    role: "CTO",
-    focus: "센서 데이터 분석 · AI 모델 설계 · 기술 검증",
-    description:
-      "스마트폰과 설비에서 수집되는 센서 데이터를 분석하고 현장에 적용할 AI 모델을 설계·검증하며, AIWALKER를 비롯한 부트캠프의 AI 알고리즘 개발을 총괄합니다.",
-    facts: [
-      "GIST 전기전자컴퓨터공학 박사",
-      "조선대학교 조교수",
-      "머신러닝 분야 SCI 논문 다수",
-    ],
-  },
 ] as const;
