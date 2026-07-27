@@ -21,7 +21,7 @@ const summary = [
   { v: "37.6억원", k: "R&D 수행 규모", note: "누적 주관·참여 과제 기준" },
   { v: "6건", k: "특허", note: "등록 1건 · 출원 5건" },
   { v: "6편", k: "논문", note: "SCI 1편 · KCI 4편 · 학술대회 1편" },
-  { v: "1건", k: "기술이전", note: "광주대학교 통상실시권" },
+  { v: "2건", k: "기술이전", note: "광주대학교 · 조선대학교 통상실시권" },
 ];
 
 export default function AchievementsPage() {

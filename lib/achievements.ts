@@ -117,6 +117,11 @@ export const techTransfer = [
     from: "광주대학교",
     date: "2025",
   },
+  {
+    name: "스마트폰 보행(IMU) 데이터 기반 근육량 예측 AI 경량화 기술 통상실시권 이전",
+    from: "조선대학교",
+    date: "2025",
+  },
 ] as const;
 
 // ⚠️ 게재 방침 (사용자 지시, 2026-07-17):

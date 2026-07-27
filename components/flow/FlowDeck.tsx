@@ -1011,7 +1011,7 @@ function AchievementsPanel({ section }: { section: string }) {
           <span className="brand-gradient bg-clip-text text-transparent">논문과 기술이전으로 이어왔습니다.</span>
         </h2>
         <p className="mt-3 max-w-[66rem] text-body-lead text-navy-600">
-          스마트폰 센서 기반 행동·보행·낙상 연구를 골격근 비율 추정까지 확장하고, 낙상예방 특허의
+          스마트폰 센서 기반 행동·보행·낙상 연구를 골격근 비율 추정까지 확장하고, 관련 기술의
           통상실시권을 확보했습니다.
         </p>
 
@@ -1021,7 +1021,7 @@ function AchievementsPanel({ section }: { section: string }) {
             "SCI 1편",
             "KCI 4편",
             "국제학술대회 1편",
-            "기술이전 1건",
+            "기술이전 2건",
           ].map((item, index) => (
             <span
               key={item}
@@ -1107,14 +1107,20 @@ function AchievementsPanel({ section }: { section: string }) {
           </section>
         </div>
 
-        <div className="mt-3 flex max-w-[66rem] flex-col gap-2 rounded-xl border border-brand-blue/15 bg-brand-blue/5 px-4 py-3 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <span className="rounded-full bg-brand-blue px-2.5 py-1 text-[0.68rem] font-bold text-white">기술이전 1건</span>
-            <strong className="text-[0.84rem] font-extrabold text-navy">{techTransfer[0].name}</strong>
-          </div>
-          <p className="text-[0.74rem] font-semibold text-navy-500">
-            {techTransfer[0].from} · {techTransfer[0].date}
-          </p>
+        <div className="mt-3 flex max-w-[66rem] flex-col gap-3 rounded-xl border border-brand-blue/15 bg-brand-blue/5 px-4 py-3">
+          <span className="w-fit rounded-full bg-brand-blue px-2.5 py-1 text-[0.68rem] font-bold text-white">
+            기술이전 {techTransfer.length}건
+          </span>
+          <ul className="space-y-2">
+            {techTransfer.map((transfer) => (
+              <li key={transfer.name} className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between md:gap-4">
+                <strong className="text-[0.84rem] font-extrabold text-navy">{transfer.name}</strong>
+                <p className="shrink-0 text-[0.74rem] font-semibold text-navy-500">
+                  {transfer.from} · {transfer.date}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     );
