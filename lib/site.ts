@@ -9,7 +9,7 @@ export const company = {
   ceo: "김민석",
   founded: "2022년 6월 24일",
   bizNo: "808-88-02526",
-  address: "광주광역시 남구 효덕로 277, 인성관 2층 202호 (진월동, 광주대학교)",
+  address: "전남광주통합특별시 남구 효덕로 277, 인성관 2층 202호 (진월동, 광주대학교)",
   email: "bootcamp.co.ltd@gmail.com",
   tel: "062-674-4911",
   domain: "https://aiwalker.co.kr",

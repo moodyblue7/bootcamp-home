@@ -1153,7 +1153,7 @@ function AchievementsPanel({ section }: { section: string }) {
                 <span className="rounded-full border border-brand-cyan/35 bg-brand-cyan/10 px-2.5 py-1 text-[0.68rem] font-bold text-brand-cyan">
                   공인시험
                 </span>
-                <span className="text-[0.7rem] font-bold text-white/45">기흥2024-00399</span>
+                <span className="text-[0.7rem] font-bold text-white/45">기용2024-00399</span>
               </div>
               <h3 className="mt-3 font-display text-[1.35rem] font-extrabold">KTC 시험성적서</h3>
               <p className="mt-2 text-[0.88rem] font-medium leading-[1.55] text-white/65">

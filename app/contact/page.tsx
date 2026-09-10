@@ -6,7 +6,7 @@ import { company } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "문의",
-  description: "실증·도입·기술협력·투자 문의를 받습니다. (주)부트캠프 · 광주광역시 남구 효덕로 277.",
+  description: "실증·도입·기술협력·투자 문의를 받습니다. (주)부트캠프 · 전남광주통합특별시 남구 효덕로 277.",
 };
 
 // 정적 사이트라 서버가 없다. 폼 대신 mailto 로 처리한다.

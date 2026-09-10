@@ -96,7 +96,7 @@ export const tech = {
       retry: { label: "기준 미달", body: "재측정·재수집 안내" },
     },
     proof: {
-      label: "KTC 공인시험 기준 · 기흥2024-00399",
+      label: "KTC 공인시험 기준 · 기용2024-00399",
       stats: [
         { k: "보행속도 오차", v: "7.5%" },
         { k: "걸음수 오차", v: "7.2%" },
