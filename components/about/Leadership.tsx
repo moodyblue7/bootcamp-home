@@ -21,6 +21,9 @@ export default function Leadership({ className }: { className: string }) {
                   </p>
                   <h3 className="mt-2 font-display text-heading-card font-extrabold text-navy">
                     {m.name}
+                    <span className="ml-2 whitespace-nowrap align-baseline text-[0.6em] font-bold text-navy-600">
+                      {m.degree}
+                    </span>
                   </h3>
                   <p className="mt-4 text-[0.9375rem] font-semibold leading-relaxed text-navy">
                     {m.focus}

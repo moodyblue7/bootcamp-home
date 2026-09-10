@@ -29,7 +29,7 @@ export const healthcarePipeline: Pipeline = {
 
 export const manufacturingPipeline: Pipeline = {
   stages: [
-    { label: "현장", title: "SMT 생산 라인", lines: ["수요기업 DH오토웨어", "파일럿 라인에서 출발"] },
+    { label: "현장", title: "SMT 생산 라인", lines: ["수요기업 D사", "파일럿 라인에서 출발"] },
     { label: "수집", title: "설비 · 공정 센서", lines: ["SPI · AOI 검사 데이터", "개별 시스템에 흩어진 신호"] },
     {
       label: "품질 게이트",
@@ -237,7 +237,7 @@ export const manufacturing = {
       { k: "사업", v: "중소벤처기업부 신속상용화 기술개발" },
       { k: "기간", v: "2026년 6월 ~ 2028년 6월 (24개월)" },
       { k: "부트캠프 역할", v: "Roll-out Kit SW 개발 주도" },
-      { k: "참여 기관", v: "DH오토웨어(SMT 라인) · 컴퓨터메이트 · 미르기술" },
+      { k: "참여 기관", v: "D사(SMT 라인) · C사 · M사" },
       { k: "표준", v: "AAS / OPC-UA 연동" },
       { k: "확산 목표", v: "SMT 파일럿 라인 → 국내 확산 → 글로벌(멕시코) 거점" },
     ],

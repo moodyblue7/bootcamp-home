@@ -108,6 +108,7 @@ export const teamSection = {
 export const team = [
   {
     name: "김민석",
+    degree: "공학박사(정보통신공학)",
     role: "대표이사",
     focus: "기술기획 · 제품화 · 현장 실행",
     description:
